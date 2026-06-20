@@ -7,14 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         /* ===== RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #05080f;
+            background: #0a0e17;
             font-family: 'Segoe UI', Tahoma, sans-serif;
             min-height: 100vh;
             display: flex;
@@ -24,8 +20,8 @@
             overflow-x: hidden;
         }
 
-        /* ===== BACKGROUND PARTIKEL BINTANG ===== */
-        .stars {
+        /* ===== ANIMASI HUNTER X HUNTER (GON & KILLUA) ===== */
+        .hxh-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -33,60 +29,53 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
+            overflow: hidden;
         }
-        .star {
+        .hxh-character {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite alternate;
+            font-size: 60px;
+            opacity: 0.08;
+            animation: hxhFloat 18s infinite ease-in-out;
         }
-        @keyframes twinkle {
-            0% { opacity: 0.2; }
-            100% { opacity: 1; }
+        .hxh-character:nth-child(1) { left: 5%; animation-delay: 0s; font-size: 80px; }
+        .hxh-character:nth-child(2) { right: 5%; animation-delay: 6s; font-size: 70px; }
+        .hxh-character:nth-child(3) { left: 30%; animation-delay: 12s; font-size: 50px; top: 40%; }
+        .hxh-character:nth-child(4) { right: 20%; animation-delay: 3s; font-size: 55px; top: 60%; }
+
+        @keyframes hxhFloat {
+            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.08; }
+            90% { opacity: 0.08; }
+            100% { transform: translateY(-20vh) scale(1.2) rotate(720deg); opacity: 0; }
         }
 
-        /* ===== 3D FLOATING GEOMETRI ===== */
-        .geo-3d {
+        /* ===== ANIMASI HARITH ML (PEDANG & CAHAYA) ===== */
+        .harith-container {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
             pointer-events: none;
+            overflow: hidden;
         }
-        .geo-3d.torus {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            border: 1px solid rgba(0, 200, 255, 0.06);
-            top: -80px;
-            right: -80px;
-            animation: spin3d 25s linear infinite;
-            transform-style: preserve-3d;
-            box-shadow: 0 0 80px rgba(0, 200, 255, 0.02);
+        .harith-sword {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.06;
+            animation: swordSlash 6s infinite ease-in-out;
         }
-        .geo-3d.torus2 {
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            border: 1px solid rgba(124, 58, 237, 0.05);
-            bottom: -120px;
-            left: -120px;
-            animation: spin3d 35s linear infinite reverse;
-            transform-style: preserve-3d;
-        }
-        .geo-3d.torus3 {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 1px solid rgba(0, 255, 200, 0.04);
-            top: 40%;
-            left: 20%;
-            animation: spin3d 20s linear infinite;
-            transform-style: preserve-3d;
-        }
-        @keyframes spin3d {
-            0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        .harith-sword:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; font-size: 50px; }
+        .harith-sword:nth-child(2) { bottom: 25%; right: 10%; animation-delay: 2s; font-size: 45px; }
+        .harith-sword:nth-child(3) { top: 50%; left: 60%; animation-delay: 4s; font-size: 35px; }
+        .harith-sword:nth-child(4) { top: 10%; right: 30%; animation-delay: 1s; font-size: 40px; }
+
+        @keyframes swordSlash {
+            0% { transform: translateX(-100px) scale(0.3) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.06; }
+            80% { opacity: 0.06; }
+            100% { transform: translateX(100px) scale(1.2) rotate(180deg); opacity: 0; }
         }
 
         /* ===== GLOW ORB ===== */
@@ -123,48 +112,35 @@
         .container {
             position: relative;
             z-index: 1;
-            background: rgba(10, 16, 30, 0.82);
+            background: rgba(10, 16, 30, 0.85);
             backdrop-filter: blur(30px);
             border-radius: 48px;
-            max-width: 500px;
+            max-width: 520px;
             width: 100%;
             border: 1px solid rgba(0, 200, 255, 0.06);
-            box-shadow: 
-                0 40px 120px rgba(0,0,0,0.9),
-                inset 0 1px 0 rgba(255,255,255,0.02),
-                0 0 80px rgba(0, 200, 255, 0.02);
+            box-shadow: 0 40px 120px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.02);
             overflow: hidden;
-            transition: 0.3s;
         }
 
         /* ===== HEADER ===== */
         .header {
             background: linear-gradient(135deg, rgba(0, 200, 255, 0.04), rgba(124, 58, 237, 0.04));
-            padding: 30px 30px 22px;
+            padding: 28px 30px 20px;
             text-align: center;
             border-bottom: 1px solid rgba(255,255,255,0.02);
             position: relative;
         }
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 20%;
-            right: 20%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.1), transparent);
-        }
         .header-icon {
-            font-size: 38px;
+            font-size: 36px;
             background: linear-gradient(135deg, #00c8ff, #7c3aed);
-            width: 74px;
-            height: 74px;
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 12px;
-            box-shadow: 0 0 60px rgba(0, 200, 255, 0.08);
+            margin: 0 auto 10px;
+            box-shadow: 0 0 60px rgba(0, 200, 255, 0.06);
             animation: icon3d 4s ease-in-out infinite;
             position: relative;
         }
@@ -174,9 +150,8 @@
             inset: -3px;
             border-radius: 50%;
             background: linear-gradient(135deg, #00c8ff, #7c3aed);
-            opacity: 0.15;
+            opacity: 0.1;
             filter: blur(12px);
-            z-index: -1;
             animation: pulseGlow 3s ease-in-out infinite;
         }
         @keyframes pulseGlow {
@@ -233,7 +208,6 @@
             flex-direction: column;
             align-items: center;
             gap: 3px;
-            position: relative;
         }
         .nav-item i { font-size: 18px; transition: 0.3s; }
         .nav-item:hover { color: #8ab4d8; background: rgba(255,255,255,0.02); }
@@ -245,25 +219,18 @@
         .nav-item.active i { transform: translateY(-2px); }
 
         /* ===== CONTENT ===== */
-        .content {
-            padding: 24px 28px 30px;
-        }
+        .content { padding: 24px 28px 30px; }
 
         /* ===== PANEL ===== */
-        .panel {
-            display: none;
-            animation: fadeSlide 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
+        .panel { display: none; animation: fadeSlide 0.45s ease; }
         .panel.active { display: block; }
         @keyframes fadeSlide {
-            0% { opacity: 0; transform: translateY(16px) scale(0.98); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+            0% { opacity: 0; transform: translateY(16px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         /* ===== FORM ===== */
-        .form-group {
-            margin-bottom: 16px;
-        }
+        .form-group { margin-bottom: 16px; }
         .form-group label {
             display: block;
             font-size: 11px;
@@ -334,7 +301,7 @@
             transform: translateY(-2px);
         }
 
-        /* ===== BUTTON SEND ===== */
+        /* ===== BUTTON ===== */
         .btn-send {
             width: 100%;
             padding: 16px;
@@ -368,6 +335,12 @@
             box-shadow: 0 8px 50px rgba(0, 200, 255, 0.12);
         }
         .btn-send:active { transform: scale(0.97); }
+
+        .btn-wa {
+            background: linear-gradient(135deg, #25d366, #1da851);
+            box-shadow: 0 4px 40px rgba(37, 211, 102, 0.06);
+        }
+        .btn-wa:hover { box-shadow: 0 8px 50px rgba(37, 211, 102, 0.12); }
 
         /* ===== STATUS ===== */
         .status-area {
@@ -434,6 +407,75 @@
             margin-top: 3px;
         }
 
+        /* ===== PAIRING SECTION ===== */
+        .pairing-section {
+            background: rgba(37, 211, 102, 0.03);
+            border: 1px solid rgba(37, 211, 102, 0.08);
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-top: 16px;
+        }
+        .pairing-section .title {
+            color: #25d366;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pairing-section .title i { font-size: 16px; }
+        .pairing-section .row {
+            display: flex;
+            gap: 10px;
+        }
+        .pairing-section .row input {
+            flex: 1;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            color: #d0dce8;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .pairing-section .row input:focus {
+            border-color: #25d366;
+            background: rgba(37, 211, 102, 0.03);
+        }
+        .pairing-section .row .btn-small {
+            padding: 12px 20px;
+            background: #25d366;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+        .pairing-section .row .btn-small:hover {
+            background: #1da851;
+            transform: scale(1.02);
+        }
+        .pairing-section .wa-link {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #4a6a8a;
+            word-break: break-all;
+            background: rgba(0,0,0,0.2);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: none;
+        }
+        .pairing-section .wa-link a {
+            color: #25d366;
+            text-decoration: none;
+        }
+        .pairing-section .wa-link a:hover { text-decoration: underline; }
+
         /* ===== FOOTER ===== */
         .footer {
             padding: 16px 28px;
@@ -464,18 +506,29 @@
             .stat-card .num { font-size: 18px; }
             .form-group input { padding: 12px 14px; font-size: 14px; }
             .btn-send { padding: 14px; font-size: 15px; }
+            .pairing-section .row { flex-direction: column; }
+            .pairing-section .row .btn-small { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-<!-- ===== BINTANG ===== -->
-<div class="stars" id="stars"></div>
+<!-- ===== ANIMASI HUNTER X HUNTER ===== -->
+<div class="hxh-container">
+    <div class="hxh-character">⚡</div>
+    <div class="hxh-character">⛩️</div>
+    <div class="hxh-character">🗡️</div>
+    <div class="hxh-character">🌀</div>
+</div>
 
-<!-- ===== 3D GEOMETRI ===== -->
-<div class="geo-3d torus"></div>
-<div class="geo-3d torus2"></div>
-<div class="geo-3d torus3"></div>
+<!-- ===== ANIMASI HARITH ML ===== -->
+<div class="harith-container">
+    <div class="harith-sword">⚔️</div>
+    <div class="harith-sword">✨</div>
+    <div class="harith-sword">🌟</div>
+    <div class="harith-sword">💫</div>
+</div>
+
 <div class="orb"></div>
 <div class="orb2"></div>
 
@@ -514,8 +567,8 @@
         <div class="nav-menu">
             <div class="nav-item active" data-panel="sender"><i class="fas fa-paper-plane"></i> Sender</div>
             <div class="nav-item" data-panel="settings"><i class="fas fa-sliders-h"></i> Settings</div>
+            <div class="nav-item" data-panel="pairing"><i class="fas fa-link"></i> Pairing</div>
             <div class="nav-item" data-panel="stats"><i class="fas fa-chart-bar"></i> Stats</div>
-            <div class="nav-item" data-panel="about"><i class="fas fa-info-circle"></i> About</div>
         </div>
 
         <!-- CONTENT -->
@@ -572,6 +625,27 @@
                 <div id="settingsStatus" class="status-area" style="margin-top:10px;">⚙️ Settings default aktif</div>
             </div>
 
+            <!-- PANEL PAIRING -->
+            <div class="panel" id="panel-pairing">
+                <div class="pairing-section">
+                    <div class="title"><i class="fas fa-link"></i> Kirim Pairing ke WA</div>
+                    <div class="row">
+                        <input type="text" id="pairingNumber" placeholder="Nomor target (62xxx)" value="6281234567890">
+                        <button class="btn-small" id="generatePairingBtn"><i class="fab fa-whatsapp"></i> Kirim</button>
+                    </div>
+                    <div class="wa-link" id="waLinkContainer">
+                        <span>🔗 Link WA: </span>
+                        <a href="#" id="waLink" target="_blank">Buka WhatsApp</a>
+                        <br>
+                        <span style="font-size:11px; color:#3a5a7a;">Klik link untuk membuka WA otomatis</span>
+                    </div>
+                    <div style="margin-top:12px; font-size:12px; color:#4a6a8a;">
+                        <i class="fas fa-info-circle" style="color:#25d366;"></i>
+                        Link ini akan membuka WhatsApp dengan pesan otomatis
+                    </div>
+                </div>
+            </div>
+
             <!-- PANEL STATS -->
             <div class="panel" id="panel-stats">
                 <div class="stats">
@@ -585,25 +659,6 @@
                 </div>
             </div>
 
-            <!-- PANEL ABOUT -->
-            <div class="panel" id="panel-about">
-                <div style="text-align:center; padding:10px 0;">
-                    <i class="fas fa-skull" style="font-size:52px; color:#00c8ff; opacity:0.15; display:block; margin-bottom:10px;"></i>
-                    <h3 style="color:#8ab4d8; font-size:22px; margin-bottom:4px; font-weight:800;">NEXUS</h3>
-                    <p style="color:#4a6a8a; font-size:13px; line-height:1.8;">
-                        WhatsApp Bug System<br>
-                        <span style="color:#2a4a6a; font-size:11px;">Versi 4.0 — Cyber Edition</span>
-                    </p>
-                    <div style="margin-top:18px; padding:14px; background:rgba(0,0,0,0.2); border-radius:14px; font-size:11px; color:#3a5a7a; border:1px solid rgba(255,255,255,0.02);">
-                        <i class="fas fa-shield-alt" style="color:#00c8ff; opacity:0.4;"></i> 
-                        <span style="color:#4a6a8a;">Private Tool — Gunakan dengan bijak</span>
-                    </div>
-                    <div style="margin-top:12px; font-size:10px; color:#1a3a5a; letter-spacing:2px;">
-                        ⚡ ⚡ ⚡
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
@@ -612,19 +667,6 @@
 
 <script>
     (function() {
-        // ===== BINTANG =====
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 3 + 's';
-            star.style.width = (Math.random() * 2 + 1) + 'px';
-            star.style.height = star.style.width;
-            starsContainer.appendChild(star);
-        }
-
         // ===== KREDENSIAL =====
         const VALID_USER = "admin";
         const VALID_PASS = "1234";
@@ -639,8 +681,8 @@
         const panels = {
             sender: document.getElementById('panel-sender'),
             settings: document.getElementById('panel-settings'),
-            stats: document.getElementById('panel-stats'),
-            about: document.getElementById('panel-about')
+            pairing: document.getElementById('panel-pairing'),
+            stats: document.getElementById('panel-stats')
         };
 
         navItems.forEach(item => {
@@ -768,7 +810,29 @@
             if (e.key === 'Enter') document.getElementById('sendBtn').click();
         });
 
+        // ===== PAIRING =====
+        document.getElementById('generatePairingBtn').addEventListener('click', function() {
+            const nomor = document.getElementById('pairingNumber').value.trim();
+            const waLinkContainer = document.getElementById('waLinkContainer');
+            const waLink = document.getElementById('waLink');
+
+            if (!nomor || nomor.length < 10) {
+                alert('❌ Nomor tidak valid! Minimal 10 digit.');
+                return;
+            }
+
+            const cleanNumber = nomor.replace(/[^0-9]/g, '');
+            const waUrl = 'https://wa.me/' + cleanNumber + '?text=Hallo%20sayang%20ini%20dari%20NEXUS%20Bug%20System';
+            waLink.href = waUrl;
+            waLink.textContent = waUrl;
+            waLinkContainer.style.display = 'block';
+        });
+
+        document.getElementById('pairingNumber').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') document.getElementById('generatePairingBtn').click();
+        });
+
     })();
 </script>
 </body>
-</html>
+                        </html>
