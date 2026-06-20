@@ -6,11 +6,11 @@
     <title>NEXUS • WhatsApp Bug</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== RESET & BASE ===== */
+        /* ===== RESET ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #0a0e17;
+            background: #05080f;
             font-family: 'Segoe UI', Tahoma, sans-serif;
             min-height: 100vh;
             display: flex;
@@ -20,7 +20,115 @@
             overflow-x: hidden;
         }
 
-        /* ===== ANIMASI HUNTER X HUNTER (GON & KILLUA) ===== */
+        /* ===== ANIMASI CYBER SCAN ===== */
+        .cyber-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .cyber-line {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.03), transparent);
+            animation: cyberScan 4s linear infinite;
+        }
+        .cyber-line:nth-child(1) { top: 10%; animation-delay: 0s; }
+        .cyber-line:nth-child(2) { top: 30%; animation-delay: 1s; }
+        .cyber-line:nth-child(3) { top: 50%; animation-delay: 2s; }
+        .cyber-line:nth-child(4) { top: 70%; animation-delay: 3s; }
+        .cyber-line:nth-child(5) { top: 90%; animation-delay: 0.5s; }
+        @keyframes cyberScan {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+
+        /* ===== BINTANG ===== */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        /* ===== ANIMASI HARITH 3D ===== */
+        .harith-3d-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            perspective: 800px;
+            overflow: hidden;
+        }
+        .harith-3d {
+            position: absolute;
+            font-size: 80px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateY(0deg) rotateX(0deg);
+            animation: harithFloat 6s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(0, 200, 255, 0.2), 0 0 80px rgba(124, 58, 237, 0.1);
+            transform-style: preserve-3d;
+            opacity: 0.06;
+        }
+        .harith-3d .glow-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 200, 255, 0.05);
+            transform: translate(-50%, -50%) rotateX(60deg) rotateZ(0deg);
+            animation: ringSpin 8s linear infinite;
+        }
+        .harith-3d .glow-ring:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            border-color: rgba(124, 58, 237, 0.04);
+            animation-duration: 12s;
+            animation-direction: reverse;
+        }
+        .harith-3d .glow-ring:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            border-color: rgba(0, 255, 200, 0.03);
+            animation-duration: 6s;
+        }
+        @keyframes harithFloat {
+            0%, 100% { transform: translate(-50%, -50%) rotateY(0deg) rotateX(0deg) scale(1); }
+            50% { transform: translate(-50%, -60%) rotateY(30deg) rotateX(10deg) scale(1.1); }
+        }
+        @keyframes ringSpin {
+            0% { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(0deg); }
+            100% { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(360deg); }
+        }
+
+        /* ===== ANIMASI HUNTER X HUNTER ===== */
         .hxh-container {
             position: fixed;
             top: 0;
@@ -33,154 +141,72 @@
         }
         .hxh-character {
             position: absolute;
-            font-size: 60px;
-            opacity: 0.08;
-            animation: hxhFloat 18s infinite ease-in-out;
+            font-size: 50px;
+            opacity: 0.04;
+            animation: hxhFloat 20s infinite ease-in-out;
         }
-        .hxh-character:nth-child(1) { left: 5%; animation-delay: 0s; font-size: 80px; }
-        .hxh-character:nth-child(2) { right: 5%; animation-delay: 6s; font-size: 70px; }
-        .hxh-character:nth-child(3) { left: 30%; animation-delay: 12s; font-size: 50px; top: 40%; }
-        .hxh-character:nth-child(4) { right: 20%; animation-delay: 3s; font-size: 55px; top: 60%; }
-
+        .hxh-character:nth-child(1) { left: 5%; animation-delay: 0s; font-size: 70px; }
+        .hxh-character:nth-child(2) { right: 5%; animation-delay: 7s; font-size: 60px; }
+        .hxh-character:nth-child(3) { left: 30%; animation-delay: 14s; font-size: 45px; top: 40%; }
+        .hxh-character:nth-child(4) { right: 20%; animation-delay: 3s; font-size: 50px; top: 60%; }
         @keyframes hxhFloat {
             0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.08; }
-            90% { opacity: 0.08; }
+            10% { opacity: 0.04; }
+            90% { opacity: 0.04; }
             100% { transform: translateY(-20vh) scale(1.2) rotate(720deg); opacity: 0; }
-        }
-
-        /* ===== ANIMASI HARITH ML (PEDANG & CAHAYA) ===== */
-        .harith-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .harith-sword {
-            position: absolute;
-            font-size: 40px;
-            opacity: 0.06;
-            animation: swordSlash 6s infinite ease-in-out;
-        }
-        .harith-sword:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; font-size: 50px; }
-        .harith-sword:nth-child(2) { bottom: 25%; right: 10%; animation-delay: 2s; font-size: 45px; }
-        .harith-sword:nth-child(3) { top: 50%; left: 60%; animation-delay: 4s; font-size: 35px; }
-        .harith-sword:nth-child(4) { top: 10%; right: 30%; animation-delay: 1s; font-size: 40px; }
-
-        @keyframes swordSlash {
-            0% { transform: translateX(-100px) scale(0.3) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.06; }
-            80% { opacity: 0.06; }
-            100% { transform: translateX(100px) scale(1.2) rotate(180deg); opacity: 0; }
-        }
-
-        /* ===== GLOW ORB ===== */
-        .orb {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 200, 255, 0.03), transparent 70%);
-            top: -200px;
-            right: -200px;
-            z-index: 0;
-            pointer-events: none;
-            animation: orbFloat 12s ease-in-out infinite;
-        }
-        .orb2 {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(124, 58, 237, 0.03), transparent 70%);
-            bottom: -250px;
-            left: -250px;
-            z-index: 0;
-            pointer-events: none;
-            animation: orbFloat 16s ease-in-out infinite reverse;
-        }
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(20px, -30px) scale(1.1); }
         }
 
         /* ===== CONTAINER ===== */
         .container {
             position: relative;
             z-index: 1;
-            background: rgba(10, 16, 30, 0.85);
+            background: rgba(8, 12, 24, 0.88);
             backdrop-filter: blur(30px);
             border-radius: 48px;
             max-width: 520px;
             width: 100%;
-            border: 1px solid rgba(0, 200, 255, 0.06);
+            border: 1px solid rgba(0, 200, 255, 0.05);
             box-shadow: 0 40px 120px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.02);
             overflow: hidden;
         }
 
         /* ===== HEADER ===== */
         .header {
-            background: linear-gradient(135deg, rgba(0, 200, 255, 0.04), rgba(124, 58, 237, 0.04));
-            padding: 28px 30px 20px;
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.03), rgba(124, 58, 237, 0.03));
+            padding: 24px 28px 18px;
             text-align: center;
             border-bottom: 1px solid rgba(255,255,255,0.02);
-            position: relative;
         }
         .header-icon {
-            font-size: 36px;
+            font-size: 34px;
             background: linear-gradient(135deg, #00c8ff, #7c3aed);
-            width: 72px;
-            height: 72px;
+            width: 68px;
+            height: 68px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 10px;
-            box-shadow: 0 0 60px rgba(0, 200, 255, 0.06);
+            box-shadow: 0 0 60px rgba(0, 200, 255, 0.05);
             animation: icon3d 4s ease-in-out infinite;
-            position: relative;
-        }
-        .header-icon::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00c8ff, #7c3aed);
-            opacity: 0.1;
-            filter: blur(12px);
-            animation: pulseGlow 3s ease-in-out infinite;
-        }
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(1.2); }
         }
         @keyframes icon3d {
             0%, 100% { transform: perspective(600px) rotateY(0deg) rotateX(0deg); }
             50% { transform: perspective(600px) rotateY(12deg) rotateX(6deg); }
         }
         .header h1 {
-            font-size: 30px;
+            font-size: 28px;
             font-weight: 900;
-            background: linear-gradient(135deg, #00c8ff, #7c3aed, #00c8ff);
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, #00c8ff, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientMove 4s ease-in-out infinite;
             letter-spacing: 2px;
         }
-        @keyframes gradientMove {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
         .header .sub {
-            color: #4a6a8a;
-            font-size: 11px;
-            letter-spacing: 5px;
+            color: #3a5a7a;
+            font-size: 10px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             margin-top: 2px;
             opacity: 0.6;
@@ -189,73 +215,71 @@
         /* ===== NAV MENU ===== */
         .nav-menu {
             display: flex;
-            background: rgba(0,0,0,0.25);
+            background: rgba(0,0,0,0.3);
             border-bottom: 1px solid rgba(255,255,255,0.02);
             padding: 0 4px;
         }
         .nav-item {
             flex: 1;
-            padding: 14px 6px;
+            padding: 12px 4px;
             text-align: center;
             color: #3a5a7a;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.4s;
+            transition: 0.3s;
             border-bottom: 2px solid transparent;
-            letter-spacing: 0.5px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 3px;
+            gap: 2px;
         }
-        .nav-item i { font-size: 18px; transition: 0.3s; }
-        .nav-item:hover { color: #8ab4d8; background: rgba(255,255,255,0.02); }
+        .nav-item i { font-size: 16px; }
+        .nav-item:hover { color: #8ab4d8; }
         .nav-item.active {
             color: #00c8ff;
             border-bottom-color: #00c8ff;
             background: rgba(0, 200, 255, 0.03);
         }
-        .nav-item.active i { transform: translateY(-2px); }
 
         /* ===== CONTENT ===== */
-        .content { padding: 24px 28px 30px; }
+        .content { padding: 20px 22px 24px; }
 
         /* ===== PANEL ===== */
-        .panel { display: none; animation: fadeSlide 0.45s ease; }
+        .panel { display: none; animation: fadeSlide 0.4s ease; }
         .panel.active { display: block; }
         @keyframes fadeSlide {
-            0% { opacity: 0; transform: translateY(16px); }
+            0% { opacity: 0; transform: translateY(12px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
         /* ===== FORM ===== */
-        .form-group { margin-bottom: 16px; }
+        .form-group { margin-bottom: 14px; }
         .form-group label {
             display: block;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            color: #5a7a9a;
-            margin-bottom: 5px;
+            color: #4a6a8a;
+            margin-bottom: 4px;
             letter-spacing: 0.8px;
             text-transform: uppercase;
         }
-        .form-group label i { margin-right: 6px; color: #00c8ff; opacity: 0.5; }
+        .form-group label i { margin-right: 6px; color: #00c8ff; opacity: 0.4; }
         .form-group input, .form-group select {
             width: 100%;
-            padding: 14px 18px;
+            padding: 12px 16px;
             background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 14px;
             color: #d0dce8;
-            font-size: 15px;
+            font-size: 14px;
             outline: none;
             transition: 0.3s;
         }
         .form-group input:focus, .form-group select:focus {
             border-color: #00c8ff;
             background: rgba(0, 200, 255, 0.03);
-            box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.04);
+            box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.03);
         }
         .form-group input::placeholder { color: #2a4a6a; }
         .form-group select option { background: #0a0e17; color: #d0dce8; }
@@ -263,59 +287,56 @@
         /* ===== MODE BUTTONS ===== */
         .mode-group {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
-            margin: 14px 0 18px;
+            margin: 12px 0 14px;
         }
         .mode-btn {
             flex: 1;
-            min-width: 80px;
-            padding: 12px 8px;
+            min-width: 70px;
+            padding: 10px 6px;
             border: 1px solid rgba(255,255,255,0.04);
             background: rgba(255,255,255,0.02);
             color: #4a6a8a;
             border-radius: 30px;
             font-weight: 700;
-            font-size: 11px;
+            font-size: 10px;
             cursor: pointer;
-            transition: 0.35s;
+            transition: 0.3s;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            letter-spacing: 0.3px;
+            gap: 4px;
         }
-        .mode-btn i { font-size: 14px; }
+        .mode-btn i { font-size: 13px; }
         .mode-btn:hover {
             background: rgba(0, 200, 255, 0.05);
             border-color: rgba(0, 200, 255, 0.08);
             color: #8ab4d8;
-            transform: translateY(-2px);
         }
         .mode-btn.active {
-            background: linear-gradient(135deg, rgba(0, 200, 255, 0.12), rgba(124, 58, 237, 0.12));
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), rgba(124, 58, 237, 0.1));
             color: #00c8ff;
-            border-color: rgba(0, 200, 255, 0.15);
-            box-shadow: 0 0 30px rgba(0, 200, 255, 0.04);
-            transform: translateY(-2px);
+            border-color: rgba(0, 200, 255, 0.12);
+            box-shadow: 0 0 30px rgba(0, 200, 255, 0.03);
         }
 
         /* ===== BUTTON ===== */
         .btn-send {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: linear-gradient(135deg, #00c8ff, #7c3aed);
             color: #fff;
             border: none;
-            border-radius: 18px;
-            font-size: 17px;
+            border-radius: 16px;
+            font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            transition: 0.35s;
-            margin-top: 6px;
+            transition: 0.3s;
+            margin-top: 4px;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 40px rgba(0, 200, 255, 0.06);
+            box-shadow: 0 4px 40px rgba(0, 200, 255, 0.04);
             position: relative;
             overflow: hidden;
         }
@@ -331,68 +352,69 @@
         }
         .btn-send:hover::before { left: 100%; }
         .btn-send:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 50px rgba(0, 200, 255, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 50px rgba(0, 200, 255, 0.08);
         }
-        .btn-send:active { transform: scale(0.97); }
 
         .btn-wa {
             background: linear-gradient(135deg, #25d366, #1da851);
-            box-shadow: 0 4px 40px rgba(37, 211, 102, 0.06);
+            box-shadow: 0 4px 40px rgba(37, 211, 102, 0.04);
         }
-        .btn-wa:hover { box-shadow: 0 8px 50px rgba(37, 211, 102, 0.12); }
+        .btn-wa:hover { box-shadow: 0 8px 50px rgba(37, 211, 102, 0.08); }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            box-shadow: 0 4px 40px rgba(255, 50, 50, 0.04);
+        }
+        .btn-danger:hover { box-shadow: 0 8px 50px rgba(255, 50, 50, 0.08); }
 
         /* ===== STATUS ===== */
         .status-area {
-            margin-top: 14px;
-            font-size: 13px;
+            margin-top: 12px;
+            font-size: 12px;
             color: #4a6a8a;
-            min-height: 22px;
+            min-height: 20px;
             text-align: center;
-            transition: 0.3s;
         }
         .status-area.error { color: #ff6b6b; }
         .status-area.success { color: #00c8ff; }
 
         /* ===== LOG ===== */
         .log-box {
-            margin-top: 14px;
-            font-size: 12px;
-            color: #6a8aaa;
-            background: rgba(0,0,0,0.35);
-            padding: 14px 18px;
-            border-radius: 16px;
-            max-height: 160px;
+            margin-top: 12px;
+            font-size: 11px;
+            color: #5a7a9a;
+            background: rgba(0,0,0,0.4);
+            padding: 12px 14px;
+            border-radius: 14px;
+            max-height: 140px;
             overflow-y: auto;
             display: none;
             font-family: 'Courier New', monospace;
-            line-height: 1.9;
+            line-height: 1.8;
             white-space: pre-wrap;
             word-break: break-all;
             border: 1px solid rgba(255,255,255,0.02);
         }
-        .log-box::-webkit-scrollbar { width: 4px; }
-        .log-box::-webkit-scrollbar-track { background: transparent; }
+        .log-box::-webkit-scrollbar { width: 3px; }
         .log-box::-webkit-scrollbar-thumb { background: #00c8ff; border-radius: 10px; }
 
         /* ===== STATS ===== */
         .stats {
             display: flex;
-            gap: 12px;
-            margin-bottom: 18px;
+            gap: 10px;
+            margin-bottom: 16px;
         }
         .stat-card {
             flex: 1;
             background: rgba(255,255,255,0.02);
-            padding: 16px 12px;
-            border-radius: 16px;
+            padding: 14px 10px;
+            border-radius: 14px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.02);
         }
-        .stat-card:hover { background: rgba(255,255,255,0.04); }
         .stat-card .num {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 800;
             background: linear-gradient(135deg, #00c8ff, #7c3aed);
             -webkit-background-clip: text;
@@ -400,58 +422,56 @@
             background-clip: text;
         }
         .stat-card .label {
-            font-size: 10px;
+            font-size: 9px;
             color: #3a5a7a;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 3px;
+            margin-top: 2px;
         }
 
-        /* ===== PAIRING SECTION ===== */
+        /* ===== PAIRING ===== */
         .pairing-section {
-            background: rgba(37, 211, 102, 0.03);
-            border: 1px solid rgba(37, 211, 102, 0.08);
-            border-radius: 16px;
-            padding: 18px 20px;
-            margin-top: 16px;
+            background: rgba(37, 211, 102, 0.02);
+            border: 1px solid rgba(37, 211, 102, 0.06);
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-top: 12px;
         }
         .pairing-section .title {
             color: #25d366;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .pairing-section .title i { font-size: 16px; }
         .pairing-section .row {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
         .pairing-section .row input {
             flex: 1;
-            padding: 12px 16px;
+            padding: 10px 14px;
             background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.04);
             border-radius: 12px;
             color: #d0dce8;
-            font-size: 14px;
+            font-size: 13px;
             outline: none;
-            transition: 0.3s;
         }
         .pairing-section .row input:focus {
             border-color: #25d366;
             background: rgba(37, 211, 102, 0.03);
         }
         .pairing-section .row .btn-small {
-            padding: 12px 20px;
+            padding: 10px 18px;
             background: #25d366;
             color: #fff;
             border: none;
             border-radius: 12px;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
             transition: 0.3s;
             white-space: nowrap;
@@ -462,7 +482,7 @@
         }
         .pairing-section .wa-link {
             margin-top: 10px;
-            font-size: 12px;
+            font-size: 11px;
             color: #4a6a8a;
             word-break: break-all;
             background: rgba(0,0,0,0.2);
@@ -476,61 +496,76 @@
         }
         .pairing-section .wa-link a:hover { text-decoration: underline; }
 
+        /* ===== LOGIN ===== */
+        .login-box { margin-bottom: 10px; }
+        .hidden { display: none !important; }
+
         /* ===== FOOTER ===== */
         .footer {
-            padding: 16px 28px;
+            padding: 14px 24px;
             text-align: center;
-            font-size: 11px;
+            font-size: 10px;
             color: #1a3a5a;
             border-top: 1px solid rgba(255,255,255,0.02);
             letter-spacing: 1.5px;
         }
         .footer span { color: #00c8ff; opacity: 0.3; }
 
-        /* ===== LOGIN ===== */
-        .login-box { margin-bottom: 10px; }
-        .hidden { display: none !important; }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             .container { border-radius: 28px; }
-            .header { padding: 22px 18px 18px; }
-            .header h1 { font-size: 24px; }
-            .header-icon { width: 60px; height: 60px; font-size: 30px; }
-            .content { padding: 18px 16px 22px; }
-            .mode-btn { font-size: 10px; min-width: 60px; padding: 10px 6px; }
-            .nav-item { font-size: 10px; padding: 10px 4px; }
-            .nav-item i { font-size: 14px; }
+            .header { padding: 18px 16px 14px; }
+            .header h1 { font-size: 22px; }
+            .header-icon { width: 54px; height: 54px; font-size: 28px; }
+            .content { padding: 16px 14px 18px; }
+            .mode-btn { font-size: 9px; min-width: 55px; padding: 8px 4px; }
+            .nav-item { font-size: 9px; padding: 8px 2px; }
+            .nav-item i { font-size: 13px; }
             .stats { flex-wrap: wrap; }
-            .stat-card { min-width: 70px; padding: 12px 8px; }
+            .stat-card { min-width: 60px; padding: 10px 6px; }
             .stat-card .num { font-size: 18px; }
-            .form-group input { padding: 12px 14px; font-size: 14px; }
-            .btn-send { padding: 14px; font-size: 15px; }
+            .form-group input { padding: 10px 12px; font-size: 13px; }
+            .btn-send { padding: 12px; font-size: 14px; }
             .pairing-section .row { flex-direction: column; }
             .pairing-section .row .btn-small { width: 100%; text-align: center; }
+            .harith-3d { font-size: 50px; }
+            .harith-3d .glow-ring { width: 100px; height: 100px; }
+            .harith-3d .glow-ring:nth-child(2) { width: 140px; height: 140px; }
+            .harith-3d .glow-ring:nth-child(3) { width: 70px; height: 70px; }
         }
     </style>
 </head>
 <body>
 
-<!-- ===== ANIMASI HUNTER X HUNTER ===== -->
+<!-- ===== CYBER SCAN LINES ===== -->
+<div class="cyber-bg">
+    <div class="cyber-line"></div>
+    <div class="cyber-line"></div>
+    <div class="cyber-line"></div>
+    <div class="cyber-line"></div>
+    <div class="cyber-line"></div>
+</div>
+
+<!-- ===== BINTANG ===== -->
+<div class="stars" id="stars"></div>
+
+<!-- ===== ANIMASI HARITH 3D ===== -->
+<div class="harith-3d-container">
+    <div class="harith-3d">
+        <span>⚔️</span>
+        <div class="glow-ring"></div>
+        <div class="glow-ring"></div>
+        <div class="glow-ring"></div>
+    </div>
+</div>
+
+<!-- ===== HUNTER X HUNTER ===== -->
 <div class="hxh-container">
     <div class="hxh-character">⚡</div>
     <div class="hxh-character">⛩️</div>
     <div class="hxh-character">🗡️</div>
     <div class="hxh-character">🌀</div>
 </div>
-
-<!-- ===== ANIMASI HARITH ML ===== -->
-<div class="harith-container">
-    <div class="harith-sword">⚔️</div>
-    <div class="harith-sword">✨</div>
-    <div class="harith-sword">🌟</div>
-    <div class="harith-sword">💫</div>
-</div>
-
-<div class="orb"></div>
-<div class="orb2"></div>
 
 <!-- ===== CONTAINER ===== -->
 <div class="container">
@@ -621,8 +656,8 @@
                     <label><i class="fas fa-edit"></i> PESAN CUSTOM</label>
                     <input type="text" id="customMessage" placeholder="Tulis pesan sendiri">
                 </div>
-                <button class="btn-send" id="saveSettingsBtn" style="background: linear-gradient(135deg, #1a3a5a, #0a2a3a);"><i class="fas fa-save"></i> SIMPAN SETTINGS</button>
-                <div id="settingsStatus" class="status-area" style="margin-top:10px;">⚙️ Settings default aktif</div>
+                <button class="btn-send" id="saveSettingsBtn" style="background: linear-gradient(135deg, #1a3a5a, #0a2a3a);"><i class="fas fa-save"></i> SIMPAN</button>
+                <div id="settingsStatus" class="status-area" style="margin-top:8px;">⚙️ Default aktif</div>
             </div>
 
             <!-- PANEL PAIRING -->
@@ -637,11 +672,7 @@
                         <span>🔗 Link WA: </span>
                         <a href="#" id="waLink" target="_blank">Buka WhatsApp</a>
                         <br>
-                        <span style="font-size:11px; color:#3a5a7a;">Klik link untuk membuka WA otomatis</span>
-                    </div>
-                    <div style="margin-top:12px; font-size:12px; color:#4a6a8a;">
-                        <i class="fas fa-info-circle" style="color:#25d366;"></i>
-                        Link ini akan membuka WhatsApp dengan pesan otomatis
+                        <span style="font-size:10px; color:#3a5a7a;">Klik link → buka WA otomatis</span>
                     </div>
                 </div>
             </div>
@@ -651,11 +682,11 @@
                 <div class="stats">
                     <div class="stat-card"><div class="num" id="totalSent">0</div><div class="label">Total Kirim</div></div>
                     <div class="stat-card"><div class="num" id="totalTargets">0</div><div class="label">Target</div></div>
-                    <div class="stat-card"><div class="num" id="activeMode">-</div><div class="label">Mode Aktif</div></div>
+                    <div class="stat-card"><div class="num" id="activeMode">-</div><div class="label">Mode</div></div>
                 </div>
-                <div style="text-align:center; color:#2a4a6a; font-size:13px; padding:20px 0; border-top:1px solid rgba(255,255,255,0.02);">
-                    <i class="fas fa-chart-line" style="color:#00c8ff; opacity:0.4;"></i> 
-                    <span style="color:#3a5a7a;">Statistik terupdate otomatis</span>
+                <div style="text-align:center; color:#2a4a6a; font-size:12px; padding:16px 0; border-top:1px solid rgba(255,255,255,0.02);">
+                    <i class="fas fa-chart-line" style="color:#00c8ff; opacity:0.3;"></i> 
+                    <span style="color:#3a5a7a;">Auto update</span>
                 </div>
             </div>
 
@@ -667,6 +698,19 @@
 
 <script>
     (function() {
+        // ===== BINTANG =====
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.width = (Math.random() * 2 + 1) + 'px';
+            star.style.height = star.style.width;
+            starsContainer.appendChild(star);
+        }
+
         // ===== KREDENSIAL =====
         const VALID_USER = "admin";
         const VALID_PASS = "1234";
@@ -835,4 +879,4 @@
     })();
 </script>
 </body>
-                        </html>
+    </html>
