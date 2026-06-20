@@ -88,44 +88,44 @@
             align-items: center;
         }
         .killua-3d {
-            font-size: 120px;
+            font-size: 150px;
             animation: killuaFloat 4s ease-in-out infinite;
             text-shadow: 
-                0 0 40px rgba(200, 230, 255, 0.3),
-                0 0 80px rgba(200, 230, 255, 0.15),
-                0 0 120px rgba(200, 230, 255, 0.1);
+                0 0 60px rgba(200, 230, 255, 0.5),
+                0 0 120px rgba(200, 230, 255, 0.25),
+                0 0 200px rgba(200, 230, 255, 0.15);
             transform-style: preserve-3d;
-            opacity: 0.12;
+            opacity: 0.25;
             position: relative;
         }
         .killua-3d .lightning-ring {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            border: 1px solid rgba(200, 230, 255, 0.08);
+            border: 1px solid rgba(200, 230, 255, 0.12);
             transform: translate(-50%, -50%) rotateX(60deg) rotateZ(0deg);
             animation: ringSpin 8s linear infinite;
         }
         .killua-3d .lightning-ring:nth-child(2) {
-            width: 240px;
-            height: 240px;
-            border-color: rgba(200, 230, 255, 0.06);
+            width: 260px;
+            height: 260px;
+            border-color: rgba(200, 230, 255, 0.08);
             animation-duration: 12s;
             animation-direction: reverse;
         }
         .killua-3d .lightning-ring:nth-child(3) {
-            width: 130px;
-            height: 130px;
-            border-color: rgba(200, 230, 255, 0.05);
+            width: 150px;
+            height: 150px;
+            border-color: rgba(200, 230, 255, 0.07);
             animation-duration: 6s;
         }
         .killua-3d .lightning-ring:nth-child(4) {
-            width: 300px;
-            height: 300px;
-            border-color: rgba(255, 230, 100, 0.03);
+            width: 320px;
+            height: 320px;
+            border-color: rgba(255, 230, 100, 0.05);
             animation-duration: 16s;
         }
         @keyframes killuaFloat {
@@ -137,7 +137,7 @@
             100% { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(360deg); }
         }
 
-        /* ===== ANIMASI HARITH ML ===== */
+        /* ===== HARITH ML ===== */
         .harith-container {
             position: fixed;
             top: 0;
@@ -165,7 +165,7 @@
             100% { transform: translateX(100px) scale(1.2) rotate(180deg); opacity: 0; }
         }
 
-        /* ===== HUNTER X HUNTER OTHER ===== */
+        /* ===== HUNTER X HUNTER ===== */
         .hxh-container {
             position: fixed;
             top: 0;
@@ -202,35 +202,64 @@
             border-radius: 48px;
             max-width: 520px;
             width: 100%;
-            border: 1px solid rgba(200, 230, 255, 0.05);
+            border: 1px solid rgba(0, 200, 255, 0.05);
             box-shadow: 0 40px 120px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.02);
             overflow: hidden;
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER — LOGO TENGGORAK BIRU DI ATAS ===== */
         .header {
-            background: linear-gradient(135deg, rgba(200, 230, 255, 0.03), rgba(124, 58, 237, 0.03));
-            padding: 24px 28px 18px;
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.04), rgba(124, 58, 237, 0.04));
+            padding: 28px 28px 20px;
             text-align: center;
             border-bottom: 1px solid rgba(255,255,255,0.02);
+            position: relative;
         }
-        .header-icon {
-            font-size: 34px;
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.08), transparent);
+        }
+
+        /* ===== LOGO TENGGORAK BIRU ===== */
+        .logo-skull {
+            font-size: 44px;
             background: linear-gradient(135deg, #00c8ff, #7c3aed);
-            width: 68px;
-            height: 68px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 10px;
-            box-shadow: 0 0 60px rgba(0, 200, 255, 0.05);
+            box-shadow: 0 0 60px rgba(0, 200, 255, 0.08);
             animation: icon3d 4s ease-in-out infinite;
+            position: relative;
+        }
+        .logo-skull::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00c8ff, #7c3aed);
+            opacity: 0.15;
+            filter: blur(15px);
+            animation: pulseGlow 3s ease-in-out infinite;
+            z-index: -1;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.25; transform: scale(1.15); }
         }
         @keyframes icon3d {
             0%, 100% { transform: perspective(600px) rotateY(0deg) rotateX(0deg); }
             50% { transform: perspective(600px) rotateY(12deg) rotateX(6deg); }
         }
+
         .header h1 {
             font-size: 28px;
             font-weight: 900;
@@ -239,33 +268,26 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: 2px;
-        }
-        .header .sub {
-            color: #3a5a7a;
-            font-size: 10px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
             margin-top: 2px;
-            opacity: 0.6;
         }
-        .header .greeting {
+
+        /* ===== GREETING + BADGE ===== */
+        .greeting {
             color: #8ab4d8;
             font-size: 14px;
-            margin-top: 6px;
+            margin-top: 4px;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
-        .header .greeting i {
+        .greeting i {
             color: #f1c40f;
             margin: 0 4px;
         }
-
-        /* ===== BUG GROUP BADGE ===== */
         .badge-group {
             display: inline-block;
             background: rgba(255, 50, 50, 0.1);
             border: 1px solid rgba(255, 50, 50, 0.15);
-            padding: 4px 14px;
+            padding: 4px 16px;
             border-radius: 30px;
             font-size: 10px;
             color: #ff6b6b;
@@ -273,6 +295,14 @@
             letter-spacing: 1px;
             margin-top: 6px;
             text-transform: uppercase;
+        }
+        .sub-title {
+            color: #3a5a7a;
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            opacity: 0.6;
         }
 
         /* ===== NAV MENU ===== */
@@ -568,14 +598,14 @@
         }
         .footer span { color: #00c8ff; opacity: 0.3; }
 
-        /* ===== ABOUT PANEL ===== */
+        /* ===== ABOUT PANEL — SEPERTI FOTO ===== */
         .about-content {
             text-align: center;
-            padding: 10px 0;
+            padding: 6px 0;
         }
         .about-content .avatar {
-            font-size: 60px;
-            margin-bottom: 8px;
+            font-size: 56px;
+            margin-bottom: 4px;
             display: block;
         }
         .about-content .name {
@@ -588,18 +618,10 @@
             color: #4a6a8a;
             margin-top: 2px;
         }
-        .about-content .exp {
-            font-size: 11px;
-            color: #3a5a7a;
-            margin-top: 4px;
-        }
-        .about-content .badge-group {
-            margin-top: 10px;
-        }
         .about-content .status-online {
             color: #25d366;
             font-size: 12px;
-            margin-top: 8px;
+            margin-top: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -615,7 +637,7 @@
         }
         .about-content .divider {
             border-top: 1px solid rgba(255,255,255,0.04);
-            margin: 14px 0;
+            margin: 12px 0;
         }
         .about-content .info-row {
             display: flex;
@@ -627,14 +649,33 @@
         .about-content .info-row span:last-child {
             color: #8ab4d8;
         }
+        .about-content .badge-group {
+            margin-top: 8px;
+        }
+        .about-content .search-bar {
+            font-size: 11px;
+            color: #3a5a7a;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .about-content .search-bar i {
+            color: #00c8ff;
+            opacity: 0.3;
+        }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             .container { border-radius: 28px; }
-            .header { padding: 18px 16px 14px; }
+            .header { padding: 20px 16px 16px; }
             .header h1 { font-size: 22px; }
-            .header .greeting { font-size: 12px; }
-            .header-icon { width: 54px; height: 54px; font-size: 28px; }
+            .logo-skull { width: 64px; height: 64px; font-size: 34px; }
+            .greeting { font-size: 12px; }
             .content { padding: 16px 14px 18px; }
             .mode-btn { font-size: 9px; min-width: 55px; padding: 8px 4px; }
             .nav-item { font-size: 9px; padding: 8px 2px; }
@@ -646,11 +687,11 @@
             .btn-send { padding: 12px; font-size: 14px; }
             .pairing-section .row { flex-direction: column; }
             .pairing-section .row .btn-small { width: 100%; text-align: center; }
-            .killua-3d { font-size: 80px; }
-            .killua-3d .lightning-ring { width: 120px; height: 120px; }
-            .killua-3d .lightning-ring:nth-child(2) { width: 160px; height: 160px; }
-            .killua-3d .lightning-ring:nth-child(3) { width: 90px; height: 90px; }
-            .killua-3d .lightning-ring:nth-child(4) { width: 200px; height: 200px; }
+            .killua-3d { font-size: 100px; }
+            .killua-3d .lightning-ring { width: 140px; height: 140px; }
+            .killua-3d .lightning-ring:nth-child(2) { width: 180px; height: 180px; }
+            .killua-3d .lightning-ring:nth-child(3) { width: 100px; height: 100px; }
+            .killua-3d .lightning-ring:nth-child(4) { width: 220px; height: 220px; }
         }
     </style>
 </head>
@@ -698,13 +739,13 @@
 <!-- ===== CONTAINER ===== -->
 <div class="container">
 
-    <!-- HEADER -->
+    <!-- ===== HEADER — LOGO TENGGORAK BIRU ===== -->
     <div class="header">
-        <div class="header-icon"><i class="fas fa-skull"></i></div>
+        <div class="logo-skull"><i class="fas fa-skull"></i></div>
         <h1>NEXUS</h1>
         <div class="greeting"><i class="fas fa-crown"></i> Hai, Dafzz 👑 <i class="fas fa-crown"></i></div>
         <div class="badge-group">⚡ BUG GROUP ⚡</div>
-        <div class="sub">⚡ WhatsApp Bug System ⚡</div>
+        <div class="sub-title">⚡ WhatsApp Bug System ⚡</div>
     </div>
 
     <!-- ===== LOGIN ===== -->
@@ -821,7 +862,7 @@
                 </div>
             </div>
 
-            <!-- PANEL ABOUT (seperti screenshot) -->
+            <!-- PANEL ABOUT — SEPERTI FOTO -->
             <div class="panel" id="panel-about">
                 <div class="about-content">
                     <span class="avatar">👑</span>
@@ -834,9 +875,8 @@
                     <div class="info-row"><span>📅 Foto Live</span><span>5 h lalu</span></div>
                     <div class="info-row"><span>🔖 Order</span><span>#apkbug #bugwhatsapp #bugwa</span></div>
                     <div class="divider"></div>
-                    <div style="font-size:11px; color:#3a5a7a;">
-                        <i class="fas fa-search" style="color:#00c8ff; opacity:0.3;"></i> 
-                        Pencarian · apk bug wa work gratis
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i> Pencarian · apk bug wa work gratis
                     </div>
                 </div>
             </div>
@@ -1031,4 +1071,4 @@
     })();
 </script>
 </body>
-                        </html>
+</html>
