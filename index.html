@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Bug</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #075e54;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            padding: 15px;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 24px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            transition: 0.3s;
+        }
+        .wa-icon {
+            background: #25d366;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 34px;
+            color: white;
+            font-weight: bold;
+        }
+        h2 {
+            color: #075e54;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .sub {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .mode-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .mode-btn {
+            padding: 8px 18px;
+            border: 2px solid #25d366;
+            background: white;
+            color: #075e54;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .mode-btn:hover {
+            background: #e8f5e9;
+        }
+        .mode-btn.active {
+            background: #25d366;
+            color: white;
+            border-color: #25d366;
+        }
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            margin: 10px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 14px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.25s;
+            background: #fafafa;
+        }
+        input:focus {
+            border-color: #25d366;
+            background: white;
+        }
+        .btn-send {
+            width: 100%;
+            padding: 15px;
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+        .btn-send:hover {
+            background: #1da851;
+            transform: scale(1.01);
+        }
+        .status-area {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #555;
+            min-height: 24px;
+        }
+        .log-box {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #444;
+            text-align: left;
+            background: #f5f7fa;
+            padding: 12px 14px;
+            border-radius: 14px;
+            max-height: 170px;
+            overflow-y: auto;
+            display: none;
+            border: 1px solid #eee;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+        }
+        .footer {
+            margin-top: 22px;
+            font-size: 11px;
+            color: #aaa;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 18px;
+        }
+        .status-error { color: #e74c3c !important; font-weight: 500; }
+        .status-success { color: #25d366 !important; font-weight: 500; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="wa-icon">💬</div>
+    <h2>WhatsApp Bug</h2>
+    <p class="sub">Pilih mode serangan & kirim ke target</p>
+
+    <div class="mode-group">
+        <button class="mode-btn active" data-mode="delay">🐢 Delay</button>
+        <button class="mode-btn" data-mode="crush">⚡ Crush</button>
+        <button class="mode-btn" data-mode="forcly">💥 Forcly</button>
+    </div>
+
+    <input type="text" id="target" placeholder="Nomor target (62xxx)" value="6281234567890">
+    <input type="text" id="message" placeholder="Pesan bug" value="Hallo sayang">
+
+    <button class="btn-send" id="sendBtn">🚀 KIRIM BUG</button>
+
+    <div id="status" class="status-area">⏳ Siap mengirim...</div>
+    <div id="log" class="log-box"></div>
+    <div class="footer">© 2026 • WhatsApp Bug Tool • Untuk Testing</div>
+</div>
+
+<script>
+    (function() {
+        let mode = 'delay';
+        const statusEl = document.getElementById('status');
+        const logEl = document.getElementById('log');
+        const sendBtn = document.getElementById('sendBtn');
+        const targetInput = document.getElementById('target');
+        const messageInput = document.getElementById('message');
+
+        // Pilih mode
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                mode = this.dataset.mode;
+                statusEl.textContent = '🔄 Mode: ' + mode.toUpperCase();
+                statusEl.className = 'status-area';
+            });
+        });
+
+        // Kirim
+        sendBtn.addEventListener('click', function() {
+            const target = targetInput.value.trim();
+            const message = messageInput.value.trim();
+
+            if (!target || target.length < 10) {
+                statusEl.textContent = '❌ Nomor tidak valid! (min 10 digit)';
+                statusEl.className = 'status-area status-error';
+                return;
+            }
+            if (!message) {
+                statusEl.textContent = '❌ Pesan tidak boleh kosong!';
+                statusEl.className = 'status-area status-error';
+                return;
+            }
+
+            // Reset & tampilkan log
+            logEl.style.display = 'block';
+            logEl.innerHTML = '';
+            statusEl.className = 'status-area';
+            statusEl.textContent = '⏳ Mengirim bug ' + mode.toUpperCase() + ' ke ' + target + '...';
+
+            let total = 50;
+            let delayMs = mode === 'delay' ? 2000 : mode === 'crush' ? 500 : 50;
+            let count = 0;
+
+            function kirimPesan() {
+                if (count >= total) {
+                    statusEl.textContent = '✅ Selesai! ' + total + ' pesan terkirim ke ' + target;
+                    statusEl.className = 'status-area status-success';
+                    logEl.innerHTML += '\n✅ Selesai!';
+                    logEl.scrollTop = logEl.scrollHeight;
+                    return;
+                }
+
+                const randomId = Math.floor(Math.random() * 9999);
+                const logMsg = '[' + (count+1) + '/' + total + '] ' + mode.toUpperCase() + ' → ' + target + ' | ' + message + ' [' + randomId + ']';
+                logEl.innerHTML += logMsg + '\n';
+                logEl.scrollTop = logEl.scrollHeight;
+                statusEl.textContent = '📤 Mengirim ' + (count+1) + '/' + total + '...';
+
+                count++;
+                setTimeout(kirimPesan, delayMs);
+            }
+
+            setTimeout(kirimPesan, 400);
+        });
+    })();
+</script>
+</body>
+</html>
