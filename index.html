@@ -1,1062 +1,339 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS • WhatsApp Bug</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For You 🌙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <style>
-        /* ===== RESET ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            background: #05080f;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            background: #0f0c29;
+            background: radial-gradient(circle at 30% 10%, #302b63, #0f0c29);
             padding: 20px;
-            overflow-x: hidden;
-        }
-
-        /* ===== CYBER SCAN LINES ===== */
-        .cyber-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
             overflow: hidden;
+            position: relative;
         }
-        .cyber-line {
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.05), transparent);
-            animation: cyberScan 4s linear infinite;
-        }
-        .cyber-line:nth-child(1) { top: 10%; animation-delay: 0s; }
-        .cyber-line:nth-child(2) { top: 30%; animation-delay: 1s; }
-        .cyber-line:nth-child(3) { top: 50%; animation-delay: 2s; }
-        .cyber-line:nth-child(4) { top: 70%; animation-delay: 3s; }
-        .cyber-line:nth-child(5) { top: 90%; animation-delay: 0.5s; }
-        @keyframes cyberScan {
-            0% { transform: translateX(-100%); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(100%); opacity: 0; }
-        }
-
-        /* ===== BINTANG ===== */
         .stars {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
             pointer-events: none;
+            z-index: 0;
         }
         .star {
             position: absolute;
-            width: 2px;
-            height: 2px;
+            width: 3px;
+            height: 3px;
             background: white;
             border-radius: 50%;
             animation: twinkle 3s infinite alternate;
+            opacity: 0.3;
         }
         @keyframes twinkle {
-            0% { opacity: 0.2; }
-            100% { opacity: 1; }
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
         }
-
-        /* ===== ANIMASI KILLUA 3D — DENGAN GAMBAR ===== */
-        .killua-3d-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            perspective: 800px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .killua-3d {
+        .card {
             position: relative;
-            animation: killuaFloat 4s ease-in-out infinite;
-            transform-style: preserve-3d;
-            opacity: 0.3;
-        }
-        .killua-3d img {
-            width: 140px;
-            height: auto;
-            border-radius: 20px;
-            filter: drop-shadow(0 0 40px rgba(200, 230, 255, 0.5));
-            animation: killuaFloat 4s ease-in-out infinite;
-        }
-        .killua-3d .lightning-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 1px solid rgba(200, 230, 255, 0.12);
-            transform: translate(-50%, -50%) rotateX(60deg) rotateZ(0deg);
-            animation: ringSpin 8s linear infinite;
-        }
-        .killua-3d .lightning-ring:nth-child(2) {
-            width: 260px;
-            height: 260px;
-            border-color: rgba(200, 230, 255, 0.08);
-            animation-duration: 12s;
-            animation-direction: reverse;
-        }
-        .killua-3d .lightning-ring:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            border-color: rgba(200, 230, 255, 0.07);
-            animation-duration: 6s;
-        }
-        .killua-3d .lightning-ring:nth-child(4) {
-            width: 320px;
-            height: 320px;
-            border-color: rgba(255, 230, 100, 0.05);
-            animation-duration: 16s;
-        }
-        @keyframes killuaFloat {
-            0%, 100% { transform: rotateY(0deg) rotateX(0deg) scale(1); }
-            50% { transform: rotateY(30deg) rotateX(10deg) scale(1.05); }
-        }
-        @keyframes ringSpin {
-            0% { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(0deg); }
-            100% { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(360deg); }
-        }
-
-        /* ===== HARITH ML ===== */
-        .harith-container {
-            position: fixed;
-            top: 0;
-            left: 0;
+            z-index: 10;
+            max-width: 480px;
             width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .harith-sword {
-            position: absolute;
-            font-size: 35px;
-            opacity: 0.04;
-            animation: swordSlash 7s infinite ease-in-out;
-        }
-        .harith-sword:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; font-size: 45px; }
-        .harith-sword:nth-child(2) { bottom: 25%; right: 10%; animation-delay: 2s; font-size: 40px; }
-        .harith-sword:nth-child(3) { top: 50%; left: 60%; animation-delay: 4s; font-size: 30px; }
-        .harith-sword:nth-child(4) { top: 10%; right: 30%; animation-delay: 1s; font-size: 35px; }
-        @keyframes swordSlash {
-            0% { transform: translateX(-100px) scale(0.3) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.04; }
-            80% { opacity: 0.04; }
-            100% { transform: translateX(100px) scale(1.2) rotate(180deg); opacity: 0; }
-        }
-
-        /* ===== HUNTER X HUNTER ===== */
-        .hxh-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .hxh-character {
-            position: absolute;
-            font-size: 50px;
-            opacity: 0.05;
-            animation: hxhFloat 20s infinite ease-in-out;
-        }
-        .hxh-character:nth-child(1) { left: 5%; animation-delay: 0s; font-size: 70px; }
-        .hxh-character:nth-child(2) { right: 5%; animation-delay: 7s; font-size: 60px; }
-        .hxh-character:nth-child(3) { left: 30%; animation-delay: 14s; font-size: 45px; top: 40%; }
-        .hxh-character:nth-child(4) { right: 20%; animation-delay: 3s; font-size: 50px; top: 60%; }
-        @keyframes hxhFloat {
-            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.05; }
-            90% { opacity: 0.05; }
-            100% { transform: translateY(-20vh) scale(1.2) rotate(720deg); opacity: 0; }
-        }
-
-        /* ===== CONTAINER ===== */
-        .container {
-            position: relative;
-            z-index: 1;
-            background: rgba(8, 12, 24, 0.88);
-            backdrop-filter: blur(30px);
-            border-radius: 48px;
-            max-width: 520px;
-            width: 100%;
-            border: 1px solid rgba(0, 200, 255, 0.05);
-            box-shadow: 0 40px 120px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.02);
-            overflow: hidden;
-        }
-
-        /* ===== HEADER ===== */
-        .header {
-            background: linear-gradient(135deg, rgba(0, 200, 255, 0.04), rgba(124, 58, 237, 0.04));
-            padding: 28px 28px 20px;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 40px;
+            padding: 40px 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
             text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.02);
-            position: relative;
+            color: #fff;
+            transition: 0.4s ease;
         }
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 10%;
-            right: 10%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.08), transparent);
-        }
-        .logo-skull {
-            font-size: 44px;
-            background: linear-gradient(135deg, #00c8ff, #7c3aed);
-            width: 80px;
-            height: 80px;
+        .avatar {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 10px;
-            box-shadow: 0 0 60px rgba(0, 200, 255, 0.08);
-            animation: icon3d 4s ease-in-out infinite;
-            position: relative;
+            font-size: 40px;
+            font-weight: 300;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            user-select: none;
         }
-        .logo-skull::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00c8ff, #7c3aed);
-            opacity: 0.15;
-            filter: blur(15px);
-            animation: pulseGlow 3s ease-in-out infinite;
-            z-index: -1;
-        }
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.1; transform: scale(1); }
-            50% { opacity: 0.25; transform: scale(1.15); }
-        }
-        @keyframes icon3d {
-            0%, 100% { transform: perspective(600px) rotateY(0deg) rotateX(0deg); }
-            50% { transform: perspective(600px) rotateY(12deg) rotateX(6deg); }
-        }
-        .header h1 {
+        h1 {
+            font-weight: 700;
             font-size: 28px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #00c8ff, #7c3aed);
+            margin-bottom: 6px;
+            background: linear-gradient(to right, #fbc2eb, #a18cd1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 2px;
-            margin-top: 2px;
         }
-        .greeting {
-            color: #8ab4d8;
+        .subtitle {
+            font-weight: 300;
             font-size: 14px;
-            margin-top: 4px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            opacity: 0.7;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
         }
-        .greeting i { color: #f1c40f; margin: 0 4px; }
-        .badge-group {
-            display: inline-block;
-            background: rgba(255, 50, 50, 0.1);
-            border: 1px solid rgba(255, 50, 50, 0.15);
-            padding: 4px 16px;
-            border-radius: 30px;
-            font-size: 10px;
-            color: #ff6b6b;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-top: 6px;
-            text-transform: uppercase;
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 auto 25px;
+            border-radius: 10px;
         }
-        .sub-title {
-            color: #3a5a7a;
-            font-size: 10px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-top: 4px;
-            opacity: 0.6;
-        }
-
-        /* ===== NAV MENU ===== */
-        .nav-menu {
+        .btn-group {
             display: flex;
-            background: rgba(0,0,0,0.3);
-            border-bottom: 1px solid rgba(255,255,255,0.02);
-            padding: 0 4px;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
         }
-        .nav-item {
-            flex: 1;
-            padding: 12px 4px;
-            text-align: center;
-            color: #3a5a7a;
-            font-size: 10px;
+        .btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 50px;
             font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
-            transition: 0.3s;
-            border-bottom: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            flex: 1;
+            min-width: 120px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            color: #0f0c29;
+            border: none;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(161, 140, 209, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(161, 140, 209, 0.5);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+        .meter-section {
+            margin: 30px 0 15px;
+        }
+        .meter-section label {
+            font-size: 13px;
+            opacity: 0.6;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 4px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            outline: none;
+            margin-top: 12px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbc2eb, #a18cd1);
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(161, 140, 209, 0.6);
+            border: 2px solid #fff;
+        }
+        #meterValue {
+            display: block;
+            margin-top: 10px;
+            font-weight: 700;
+            font-size: 22px;
+            background: linear-gradient(to right, #fbc2eb, #a18cd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            display: none;
+            justify-content: center;
             align-items: center;
-            gap: 2px;
+            padding: 20px;
         }
-        .nav-item i { font-size: 16px; }
-        .nav-item:hover { color: #8ab4d8; }
-        .nav-item.active {
-            color: #00c8ff;
-            border-bottom-color: #00c8ff;
-            background: rgba(0, 200, 255, 0.03);
+        .modal-overlay.active {
+            display: flex;
         }
-
-        /* ===== CONTENT ===== */
-        .content { padding: 20px 22px 24px; }
-
-        /* ===== PANEL ===== */
-        .panel { display: none; animation: fadeSlide 0.4s ease; }
-        .panel.active { display: block; }
-        @keyframes fadeSlide {
-            0% { opacity: 0; transform: translateY(12px); }
+        .modal-box {
+            background: #1a1730;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            max-width: 420px;
+            padding: 40px 30px;
+            text-align: center;
+            color: #fff;
+            animation: fadeUp 0.4s ease;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+        }
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-
-        /* ===== FORM ===== */
-        .form-group { margin-bottom: 14px; }
-        .form-group label {
-            display: block;
-            font-size: 10px;
-            font-weight: 700;
-            color: #4a6a8a;
-            margin-bottom: 4px;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-        }
-        .form-group label i { margin-right: 6px; color: #00c8ff; opacity: 0.4; }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.04);
-            border-radius: 14px;
-            color: #d0dce8;
-            font-size: 14px;
-            outline: none;
-            transition: 0.3s;
-        }
-        .form-group input:focus, .form-group select:focus {
-            border-color: #00c8ff;
-            background: rgba(0, 200, 255, 0.03);
-            box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.03);
-        }
-        .form-group input::placeholder { color: #2a4a6a; }
-        .form-group select option { background: #0a0e17; color: #d0dce8; }
-
-        /* ===== MODE BUTTONS ===== */
-        .mode-group {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin: 12px 0 14px;
-        }
-        .mode-btn {
-            flex: 1;
-            min-width: 70px;
-            padding: 10px 6px;
-            border: 1px solid rgba(255,255,255,0.04);
-            background: rgba(255,255,255,0.02);
-            color: #4a6a8a;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-        .mode-btn i { font-size: 13px; }
-        .mode-btn:hover {
-            background: rgba(0, 200, 255, 0.05);
-            border-color: rgba(0, 200, 255, 0.08);
-            color: #8ab4d8;
-        }
-        .mode-btn.active {
-            background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), rgba(124, 58, 237, 0.1));
-            color: #00c8ff;
-            border-color: rgba(0, 200, 255, 0.12);
-            box-shadow: 0 0 30px rgba(0, 200, 255, 0.03);
-        }
-
-        /* ===== BUTTON ===== */
-        .btn-send {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #00c8ff, #7c3aed);
+        .modal-box h2 { font-size: 24px; margin-bottom: 15px; }
+        .modal-box p { font-size: 15px; line-height: 1.7; opacity: 0.8; margin-bottom: 25px; font-weight: 300; }
+        .modal-box .btn-close-modal {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 10px 30px;
+            border-radius: 50px;
             color: #fff;
-            border: none;
-            border-radius: 16px;
-            font-size: 16px;
-            font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 4px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 40px rgba(0, 200, 255, 0.04);
-            position: relative;
-            overflow: hidden;
         }
-        .btn-send::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transition: 0.6s;
-        }
-        .btn-send:hover::before { left: 100%; }
-        .btn-send:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 50px rgba(0, 200, 255, 0.08);
-        }
-
-        /* ===== STATUS ===== */
-        .status-area {
-            margin-top: 12px;
-            font-size: 12px;
-            color: #4a6a8a;
-            min-height: 20px;
-            text-align: center;
-        }
-        .status-area.error { color: #ff6b6b; }
-        .status-area.success { color: #00c8ff; }
-
-        /* ===== LOG ===== */
-        .log-box {
-            margin-top: 12px;
-            font-size: 11px;
-            color: #5a7a9a;
-            background: rgba(0,0,0,0.4);
-            padding: 12px 14px;
-            border-radius: 14px;
-            max-height: 140px;
-            overflow-y: auto;
-            display: none;
-            font-family: 'Courier New', monospace;
-            line-height: 1.8;
-            white-space: pre-wrap;
-            word-break: break-all;
-            border: 1px solid rgba(255,255,255,0.02);
-        }
-        .log-box::-webkit-scrollbar { width: 3px; }
-        .log-box::-webkit-scrollbar-thumb { background: #00c8ff; border-radius: 10px; }
-
-        /* ===== STATS ===== */
-        .stats {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-        .stat-card {
-            flex: 1;
-            background: rgba(255,255,255,0.02);
-            padding: 14px 10px;
-            border-radius: 14px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.02);
-        }
-        .stat-card .num {
-            font-size: 22px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #00c8ff, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .stat-card .label {
-            font-size: 9px;
-            color: #3a5a7a;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 2px;
-        }
-
-        /* ===== PAIRING ===== */
-        .pairing-section {
-            background: rgba(37, 211, 102, 0.02);
-            border: 1px solid rgba(37, 211, 102, 0.06);
-            border-radius: 14px;
-            padding: 16px 18px;
-            margin-top: 12px;
-        }
-        .pairing-section .title {
-            color: #25d366;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .pairing-section .row {
-            display: flex;
-            gap: 8px;
-        }
-        .pairing-section .row input {
-            flex: 1;
-            padding: 10px 14px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.04);
-            border-radius: 12px;
-            color: #d0dce8;
-            font-size: 13px;
-            outline: none;
-        }
-        .pairing-section .row input:focus {
-            border-color: #25d366;
-            background: rgba(37, 211, 102, 0.03);
-        }
-        .pairing-section .row .btn-small {
-            padding: 10px 18px;
-            background: #25d366;
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-            white-space: nowrap;
-        }
-        .pairing-section .row .btn-small:hover {
-            background: #1da851;
-            transform: scale(1.02);
-        }
-        .pairing-section .wa-link {
-            margin-top: 10px;
-            font-size: 11px;
-            color: #4a6a8a;
-            word-break: break-all;
-            background: rgba(0,0,0,0.2);
-            padding: 8px 12px;
-            border-radius: 8px;
-            display: none;
-        }
-        .pairing-section .wa-link a {
-            color: #25d366;
-            text-decoration: none;
-        }
-        .pairing-section .wa-link a:hover { text-decoration: underline; }
-
-        /* ===== LOGIN ===== */
-        .login-box { margin-bottom: 10px; }
-        .hidden { display: none !important; }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            padding: 14px 24px;
-            text-align: center;
-            font-size: 10px;
-            color: #1a3a5a;
-            border-top: 1px solid rgba(255,255,255,0.02);
-            letter-spacing: 1.5px;
-        }
-        .footer span { color: #00c8ff; opacity: 0.3; }
-
-        /* ===== ABOUT PANEL ===== */
-        .about-content {
-            text-align: center;
-            padding: 6px 0;
-        }
-        .about-content .avatar {
-            font-size: 56px;
-            margin-bottom: 4px;
-            display: block;
-        }
-        .about-content .name {
-            font-size: 18px;
-            font-weight: 700;
-            color: #8ab4d8;
-        }
-        .about-content .role {
-            font-size: 12px;
-            color: #4a6a8a;
-            margin-top: 2px;
-        }
-        .about-content .status-online {
-            color: #25d366;
-            font-size: 12px;
-            margin-top: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-        .about-content .status-online i {
-            font-size: 10px;
-            animation: blink 1.5s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.2; }
-        }
-        .about-content .divider {
-            border-top: 1px solid rgba(255,255,255,0.04);
-            margin: 12px 0;
-        }
-        .about-content .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 4px 0;
-            font-size: 12px;
-            color: #4a6a8a;
-        }
-        .about-content .info-row span:last-child {
-            color: #8ab4d8;
-        }
-        .about-content .badge-group {
-            margin-top: 8px;
-        }
-        .about-content .search-bar {
-            font-size: 11px;
-            color: #3a5a7a;
-            margin-top: 10px;
-            padding: 8px 12px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .about-content .search-bar i {
-            color: #00c8ff;
-            opacity: 0.3;
-        }
-
-        /* ===== RESPONSIVE ===== */
+        .modal-box .btn-close-modal:hover { background: rgba(255, 255, 255, 0.15); }
+        .footer { margin-top: 25px; font-size: 11px; opacity: 0.25; letter-spacing: 1px; font-weight: 300; }
         @media (max-width: 480px) {
-            .container { border-radius: 28px; }
-            .header { padding: 20px 16px 16px; }
-            .header h1 { font-size: 22px; }
-            .logo-skull { width: 64px; height: 64px; font-size: 34px; }
-            .greeting { font-size: 12px; }
-            .content { padding: 16px 14px 18px; }
-            .mode-btn { font-size: 9px; min-width: 55px; padding: 8px 4px; }
-            .nav-item { font-size: 9px; padding: 8px 2px; }
-            .nav-item i { font-size: 13px; }
-            .stats { flex-wrap: wrap; }
-            .stat-card { min-width: 60px; padding: 10px 6px; }
-            .stat-card .num { font-size: 18px; }
-            .form-group input { padding: 10px 12px; font-size: 13px; }
-            .btn-send { padding: 12px; font-size: 14px; }
-            .pairing-section .row { flex-direction: column; }
-            .pairing-section .row .btn-small { width: 100%; text-align: center; }
-            .killua-3d img { width: 100px; }
-            .killua-3d .lightning-ring { width: 140px; height: 140px; }
-            .killua-3d .lightning-ring:nth-child(2) { width: 180px; height: 180px; }
-            .killua-3d .lightning-ring:nth-child(3) { width: 100px; height: 100px; }
-            .killua-3d .lightning-ring:nth-child(4) { width: 220px; height: 220px; }
+            .card { padding: 30px 20px; }
+            .btn { min-width: 100px; padding: 10px 18px; font-size: 12px; }
+            h1 { font-size: 24px; }
         }
     </style>
 </head>
 <body>
-
-<!-- ===== CYBER SCAN LINES ===== -->
-<div class="cyber-bg">
-    <div class="cyber-line"></div>
-    <div class="cyber-line"></div>
-    <div class="cyber-line"></div>
-    <div class="cyber-line"></div>
-    <div class="cyber-line"></div>
-</div>
-
-<!-- ===== BINTANG ===== -->
-<div class="stars" id="stars"></div>
-
-<!-- ===== KILLUA 3D — DENGAN GAMBAR ===== -->
-<div class="killua-3d-container">
-    <div class="killua-3d">
-        <img src="https://i.postimg.cc/63bwqyMV/Screenshot-20260620-190150.jpg" alt="Killua">
-        <div class="lightning-ring"></div>
-        <div class="lightning-ring"></div>
-        <div class="lightning-ring"></div>
-        <div class="lightning-ring"></div>
-    </div>
-</div>
-
-<!-- ===== HARITH ML ===== -->
-<div class="harith-container">
-    <div class="harith-sword">⚔️</div>
-    <div class="harith-sword">✨</div>
-    <div class="harith-sword">🌟</div>
-    <div class="harith-sword">💫</div>
-</div>
-
-<!-- ===== HUNTER X HUNTER ===== -->
-<div class="hxh-container">
-    <div class="hxh-character">⛩️</div>
-    <div class="hxh-character">🗡️</div>
-    <div class="hxh-character">🌀</div>
-    <div class="hxh-character">🔥</div>
-</div>
-
-<!-- ===== CONTAINER ===== -->
-<div class="container">
-
-    <!-- ===== HEADER ===== -->
-    <div class="header">
-        <div class="logo-skull"><i class="fas fa-skull"></i></div>
-        <h1>NEXUS</h1>
-        <div class="greeting"><i class="fas fa-crown"></i> Hai, Dafzz 👑 <i class="fas fa-crown"></i></div>
-        <div class="badge-group">⚡ BUG GROUP ⚡</div>
-        <div class="sub-title">⚡ WhatsApp Bug System ⚡</div>
+    <div class="stars" id="starsContainer"></div>
+    <div class="card">
+        <div class="avatar">✨</div>
+        <h1>Halo, Sayang!</h1>
+        <p class="subtitle">🌙 • UNTUK KAMU YANG TERINDAH • 🌙</p>
+        <div class="divider"></div>
+        <p style="font-weight:300; opacity:0.7; font-size:15px; margin-bottom:5px;">
+            "Di antara ribuan bintang, aku paling suka yang ada di matamu."
+        </p>
+        <div class="meter-section">
+            <label>💖 SEBERAPA CINTA KAMU HARI INI?</label>
+            <input type="range" min="0" max="100" value="85" id="loveSlider" />
+            <span id="meterValue">85%</span>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="openLetterBtn">💌 Baca Surat</button>
+            <button class="btn btn-secondary" id="surpriseBtn">🎁 Kejutan</button>
+        </div>
+        <div class="footer">✦ dibuat khusus untukmu ✦</div>
     </div>
 
-    <!-- ===== LOGIN ===== -->
-    <div id="loginSection">
-        <div class="content">
-            <div class="login-box">
-                <div class="form-group">
-                    <label><i class="fas fa-user"></i> USERNAME</label>
-                    <input type="text" id="loginUser" placeholder="Masukkan username" value="admin">
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-lock"></i> PASSWORD</label>
-                    <input type="password" id="loginPass" placeholder="Masukkan password" value="1234">
-                </div>
-                <button class="btn-send" id="loginBtn"><i class="fas fa-sign-in-alt"></i> LOGIN</button>
-                <div class="status-area" id="loginStatus">⏳ Masukkan kredensial</div>
-            </div>
+    <div class="modal-overlay" id="letterModal">
+        <div class="modal-box">
+            <h2>💌 Untuk Kamu</h2>
+            <p>
+                Aku hanya ingin bilang, terima kasih sudah menjadi bagian dari hariku.
+                Senyummu adalah alasan aku selalu tersenyum. <br /><br />
+                Jaga dirimu baik-baik, ya. Aku selalu di sini untukmu. 🌹
+            </p>
+            <button class="btn-close-modal" id="closeModalBtn">Tutup</button>
         </div>
     </div>
 
-    <!-- ===== BUG SECTION ===== -->
-    <div id="bugSection" class="hidden">
+    <script>
+        (function createStars() {
+            const container = document.getElementById('starsContainer');
+            for (let i = 0; i < 80; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 5 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(star);
+            }
+        })();
 
-        <!-- NAVIGATION -->
-        <div class="nav-menu">
-            <div class="nav-item active" data-panel="sender"><i class="fas fa-paper-plane"></i> Sender</div>
-            <div class="nav-item" data-panel="settings"><i class="fas fa-sliders-h"></i> Settings</div>
-            <div class="nav-item" data-panel="pairing"><i class="fas fa-link"></i> Pairing</div>
-            <div class="nav-item" data-panel="stats"><i class="fas fa-chart-bar"></i> Stats</div>
-            <div class="nav-item" data-panel="about"><i class="fas fa-user"></i> About</div>
-        </div>
-
-        <!-- CONTENT -->
-        <div class="content">
-
-            <!-- PANEL SENDER -->
-            <div class="panel active" id="panel-sender">
-                <div class="mode-group">
-                    <button class="mode-btn active" data-mode="delay"><i class="fas fa-turtle"></i> Delay</button>
-                    <button class="mode-btn" data-mode="crush"><i class="fas fa-bolt"></i> Crush</button>
-                    <button class="mode-btn" data-mode="forcly"><i class="fas fa-fire"></i> Forcly</button>
-                </div>
-
-                <div class="form-group">
-                    <label><i class="fas fa-bullseye"></i> NOMOR TARGET</label>
-                    <input type="text" id="target" placeholder="Contoh: +62xxxxxxxxxx" value="6281234567890">
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-comment-dots"></i> PESAN BUG</label>
-                    <input type="text" id="message" placeholder="Pesan spam" value="Hallo sayang">
-                </div>
-
-                <button class="btn-send" id="sendBtn"><i class="fas fa-skull-crossbones"></i> KIRIM BUG</button>
-
-                <div id="status" class="status-area">⏳ Siap mengirim...</div>
-                <div id="log" class="log-box"></div>
-            </div>
-
-            <!-- PANEL SETTINGS -->
-            <div class="panel" id="panel-settings">
-                <div class="form-group">
-                    <label><i class="fas fa-hashtag"></i> JUMLAH PESAN</label>
-                    <input type="number" id="jumlahPesan" value="50" min="1" max="500">
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-clock"></i> DELAY CUSTOM (ms)</label>
-                    <input type="number" id="delayCustom" value="1000" min="50" max="5000">
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-robot"></i> PESAN OTOMATIS</label>
-                    <select id="presetMessage">
-                        <option value="Hallo sayang">Hallo sayang</option>
-                        <option value="Bug WA nih">Bug WA nih</option>
-                        <option value="Coba buka WA kamu">Coba buka WA kamu</option>
-                        <option value="Spam dari NEXUS">Spam dari NEXUS</option>
-                        <option value="Custom">Custom</option>
-                    </select>
-                </div>
-                <div class="form-group" id="customMessageGroup" style="display:none;">
-                    <label><i class="fas fa-edit"></i> PESAN CUSTOM</label>
-                    <input type="text" id="customMessage" placeholder="Tulis pesan sendiri">
-                </div>
-                <button class="btn-send" id="saveSettingsBtn" style="background: linear-gradient(135deg, #1a3a5a, #0a2a3a);"><i class="fas fa-save"></i> SIMPAN</button>
-                <div id="settingsStatus" class="status-area" style="margin-top:8px;">⚙️ Default aktif</div>
-            </div>
-
-            <!-- PANEL PAIRING -->
-            <div class="panel" id="panel-pairing">
-                <div class="pairing-section">
-                    <div class="title"><i class="fas fa-link"></i> Kirim Pairing ke WA</div>
-                    <div class="row">
-                        <input type="text" id="pairingNumber" placeholder="Nomor target (62xxx)" value="6281234567890">
-                        <button class="btn-small" id="generatePairingBtn"><i class="fab fa-whatsapp"></i> Kirim</button>
-                    </div>
-                    <div class="wa-link" id="waLinkContainer">
-                        <span>🔗 Link WA: </span>
-                        <a href="#" id="waLink" target="_blank">Buka WhatsApp</a>
-                        <br>
-                        <span style="font-size:10px; color:#3a5a7a;">Klik link → buka WA otomatis</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PANEL STATS -->
-            <div class="panel" id="panel-stats">
-                <div class="stats">
-                    <div class="stat-card"><div class="num" id="totalSent">0</div><div class="label">Total Kirim</div></div>
-                    <div class="stat-card"><div class="num" id="totalTargets">0</div><div class="label">Target</div></div>
-                    <div class="stat-card"><div class="num" id="activeMode">-</div><div class="label">Mode</div></div>
-                </div>
-                <div style="text-align:center; color:#2a4a6a; font-size:12px; padding:16px 0; border-top:1px solid rgba(255,255,255,0.02);">
-                    <i class="fas fa-chart-line" style="color:#00c8ff; opacity:0.3;"></i> 
-                    <span style="color:#3a5a7a;">Auto update</span>
-                </div>
-            </div>
-
-            <!-- PANEL ABOUT -->
-            <div class="panel" id="panel-about">
-                <div class="about-content">
-                    <span class="avatar">👑</span>
-                    <div class="name">Dafzz</div>
-                    <div class="role">Role: DWEK - Exp: 2053-10-29</div>
-                    <div class="badge-group">⚡ BUG GROUP ⚡</div>
-                    <div class="status-online"><i class="fas fa-circle"></i> Online</div>
-                    <div class="divider"></div>
-                    <div class="info-row"><span>📱 Sender Type</span><span>PRIVATE · GLOBAL</span></div>
-                    <div class="info-row"><span>📅 Foto Live</span><span>5 h lalu</span></div>
-                    <div class="info-row"><span>🔖 Order</span><span>#apkbug #bugwhatsapp #bugwa</span></div>
-                    <div class="divider"></div>
-                    <div class="search-bar">
-                        <i class="fas fa-search"></i> Pencarian · apk bug wa work gratis
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="footer"><span>✦</span> NEXUS · Private Bug Tool <span>✦</span></div>
-</div>
-
-<script>
-    (function() {
-        // ===== BINTANG =====
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 80; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 3 + 's';
-            star.style.width = (Math.random() * 2 + 1) + 'px';
-            star.style.height = star.style.width;
-            starsContainer.appendChild(star);
-        }
-
-        // ===== KREDENSIAL =====
-        const VALID_USER = "admin";
-        const VALID_PASS = "1234";
-
-        const loginSection = document.getElementById('loginSection');
-        const bugSection = document.getElementById('bugSection');
-        const loginBtn = document.getElementById('loginBtn');
-        const loginStatus = document.getElementById('loginStatus');
-
-        // ===== NAVIGASI =====
-        const navItems = document.querySelectorAll('.nav-item');
-        const panels = {
-            sender: document.getElementById('panel-sender'),
-            settings: document.getElementById('panel-settings'),
-            pairing: document.getElementById('panel-pairing'),
-            stats: document.getElementById('panel-stats'),
-            about: document.getElementById('panel-about')
-        };
-
-        navItems.forEach(item => {
-            item.addEventListener('click', function() {
-                navItems.forEach(n => n.classList.remove('active'));
-                this.classList.add('active');
-                const panelName = this.dataset.panel;
-                Object.keys(panels).forEach(key => {
-                    panels[key].classList.toggle('active', key === panelName);
-                });
-            });
-        });
-
-        // ===== LOGIN =====
-        loginBtn.addEventListener('click', function() {
-            const user = document.getElementById('loginUser').value.trim();
-            const pass = document.getElementById('loginPass').value.trim();
-
-            if (user === VALID_USER && pass === VALID_PASS) {
-                loginSection.classList.add('hidden');
-                bugSection.classList.remove('hidden');
-                loginStatus.textContent = '✅ Login berhasil!';
-                loginStatus.className = 'status-area success';
-            } else {
-                loginStatus.textContent = '❌ Username atau password salah!';
-                loginStatus.className = 'status-area error';
+        const slider = document.getElementById('loveSlider');
+        const meterDisplay = document.getElementById('meterValue');
+        slider.addEventListener('input', function() {
+            const val = this.value;
+            meterDisplay.textContent = val + '%';
+            if (val >= 90) {
+                meterDisplay.style.transform = 'scale(1.2)';
+                setTimeout(() => meterDisplay.style.transform = 'scale(1)', 200);
             }
         });
 
-        document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') loginBtn.click(); });
-        document.getElementById('loginUser').addEventListener('keydown', e => { if (e.key === 'Enter') loginBtn.click(); });
+        const modal = document.getElementById('letterModal');
+        const openBtn = document.getElementById('openLetterBtn');
+        const closeBtn = document.getElementById('closeModalBtn');
+        openBtn.addEventListener('click', () => modal.classList.add('active'));
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
 
-        // ===== MODE =====
-        let mode = 'delay';
-        let totalSent = 0;
-        let totalTargets = 0;
-
-        document.querySelectorAll('.mode-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                mode = this.dataset.mode;
-                document.getElementById('status').textContent = '🔄 Mode: ' + mode.toUpperCase();
-                document.getElementById('status').className = 'status-area';
-                document.getElementById('activeMode').textContent = mode.toUpperCase();
-            });
-        });
-
-        // ===== SETTINGS =====
-        let jumlahPesan = 50;
-        let delayCustom = 1000;
-        let customMsg = '';
-
-        document.getElementById('saveSettingsBtn').addEventListener('click', function() {
-            jumlahPesan = parseInt(document.getElementById('jumlahPesan').value) || 50;
-            delayCustom = parseInt(document.getElementById('delayCustom').value) || 1000;
-            const preset = document.getElementById('presetMessage').value;
-            if (preset === 'Custom') {
-                customMsg = document.getElementById('customMessage').value.trim() || 'Custom spam';
-            } else {
-                customMsg = preset;
+        document.getElementById('surpriseBtn').addEventListener('click', function() {
+            const emojis = ['❤️', '✨', '🌟', '💖', '🥰', '🌹', '💫'];
+            for (let i = 0; i < 30; i++) {
+                const el = document.createElement('div');
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                el.style.position = 'fixed';
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.top = '-20px';
+                el.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                el.style.pointerEvents = 'none';
+                el.style.zIndex = '9999';
+                el.style.transition = 'all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                document.body.appendChild(el);
+                const destX = (Math.random() - 0.5) * 200;
+                const destY = window.innerHeight + 100;
+                setTimeout(() => {
+                    el.style.transform = `translate(${destX}px, ${destY}px) rotate(${Math.random() * 360}deg)`;
+                    el.style.opacity = '0';
+                }, 10);
+                setTimeout(() => el.remove(), 2000);
             }
-            document.getElementById('settingsStatus').textContent = '✅ Settings disimpan! Jumlah: ' + jumlahPesan + ', Delay: ' + delayCustom + 'ms';
-            document.getElementById('settingsStatus').className = 'status-area success';
+            this.textContent = '🥳 Berhasil!';
+            this.style.opacity = '0.7';
+            setTimeout(() => { this.textContent = '🎁 Kejutan'; this.style.opacity = '1'; }, 1500);
         });
 
-        document.getElementById('presetMessage').addEventListener('change', function() {
-            document.getElementById('customMessageGroup').style.display = this.value === 'Custom' ? 'block' : 'none';
-        });
-
-        // ===== KIRIM =====
-        document.getElementById('sendBtn').addEventListener('click', function() {
-            const target = document.getElementById('target').value.trim();
-            const message = document.getElementById('message').value.trim() || customMsg || 'Bug WA';
-            const status = document.getElementById('status');
-            const log = document.getElementById('log');
-
-            if (!target || target.length < 10) {
-                status.textContent = '❌ Nomor tidak valid! (min 10 digit)';
-                status.className = 'status-area error';
-                return;
-            }
-            if (!message) {
-                status.textContent = '❌ Pesan tidak boleh kosong!';
-                status.className = 'status-area error';
-                return;
-            }
-
-            log.style.display = 'block';
-            log.innerHTML = '';
-            status.className = 'status-area';
-            status.textContent = '⏳ Mengirim bug ' + mode.toUpperCase() + ' ke ' + target + '...';
-
-            let total = jumlahPesan;
-            let delayMs = mode === 'delay' ? (delayCustom || 2000) : mode === 'crush' ? (delayCustom ? delayCustom/2 : 500) : 50;
-            let count = 0;
-
-            function kirimPesan() {
-                if (count >= total) {
-                    status.textContent = '✅ Selesai! ' + total + ' pesan terkirim ke ' + target;
-                    status.className = 'status-area success';
-                    log.innerHTML += '\n✅ Selesai!';
-                    log.scrollTop = log.scrollHeight;
-                    totalSent += total;
-                    totalTargets += 1;
-                    document.getElementById('totalSent').textContent = totalSent;
-                    document.getElementById('totalTargets').textContent = totalTargets;
-                    return;
-                }
-                const randomId = Math.floor(Math.random() * 9999);
-                log.innerHTML += '[' + (count+1) + '/' + total + '] ' + mode.toUpperCase() + ' → ' + target + ' | ' + message + ' [' + randomId + ']\n';
-                log.scrollTop = log.scrollHeight;
-                status.textContent = '📤 Mengirim ' + (count+1) + '/' + total + '...';
-                count++;
-                setTimeout(kirimPesan, delayMs);
-            }
-
-            setTimeout(kirimPesan, 400);
-        });
-
-        document.getElementById('message').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') document.getElementById('sendBtn').click();
-        });
-        document.getElementById('target').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') document.getElementById('sendBtn').click();
-        });
-
-        // ===== PAIRING =====
-        document.getElementById('generatePairingBtn').addEventListener('click', function() {
-            const nomor = document.getElementById('pairingNumber').value.trim();
-            const waLinkContainer = document.getElementById('waLinkContainer');
-            const waLink = document.getElementById('waLink');
-
-            if (!nomor || nomor.length < 10) {
-                alert('❌ Nomor tidak valid! Minimal 10 digit.');
-                return;
-            }
-
-            const cleanNumber = nomor.replace(/[^0-9]/g, '');
-            const waUrl = 'https://wa.me/' + cleanNumber + '?text=Hallo%20sayang%20ini%20dari%20NEXUS%20Bug%20System';
-            waLink.href = waUrl;
-            waLink.textContent = waUrl;
-            waLinkContainer.style.display = 'block';
-        });
-
-        document.getElementById('pairingNumber').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') document.getElementById('generatePairingBtn').click();
-        });
-
-    })();
-</script>
+        const quotes = [
+            '"Di antara ribuan bintang, aku paling suka yang ada di matamu."',
+            '"Jika cinta adalah puisi, maka kamu adalah sajak terindahku."',
+            '"Aku tidak butuh sempurna, aku butuh kamu."',
+            '"Setiap detik bersamamu adalah hadiah terbaik."'
+        ];
+        let quoteIndex = 0;
+        const quoteElement = document.querySelector('.card p');
+        setInterval(() => {
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+            quoteElement.textContent = quotes[quoteIndex];
+        }, 8000);
+    </script>
 </body>
-    </html>
+</html>
