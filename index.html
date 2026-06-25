@@ -3,398 +3,445 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💖 Web Bucin - DAFFAHACK</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Untukmu, Bintang Hatiku ❤️</title>
+    <!-- Link Font dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Icon hati yang manis (SVG inline) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FF69B4' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E" type="image/svg+xml">
+
     <style>
-        /* ---------- RESET ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* --- Bagian CSS Dimulai Di Sini --- */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #FF69B4; /* Hot Pink */
+            --secondary-color: #FFC0CB; /* Light Pink */
+            --text-color: #333;
+            --light-text-color: #f8f8f8;
+            --background-gradient-start: #ffe0f0;
+            --background-gradient-end: #fff0f5;
+            --card-background: rgba(255, 255, 255, 0.9);
         }
 
         body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: radial-gradient(ellipse at 30% 10%, #1a0b1f, #0d0a1a);
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+            color: var(--text-color);
+            overflow: hidden; /* Penting untuk animasi hati */
         }
 
-        /* ---------- BINTANG (background) ---------- */
-        .stars {
+        /* Splash Screen Styling */
+        .splash-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: twinkle var(--duration) infinite alternate;
-        }
-        @keyframes twinkle {
-            0% { opacity: 0.2; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
         }
 
-        /* ---------- KARTU ---------- */
-        .card {
+        .splash-screen.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .splash-content {
+            animation: fadeInScale 1.5s ease-out forwards;
+        }
+
+        .splash-screen h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4em;
+            color: var(--light-text-color);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .splash-screen p {
+            font-size: 1.2em;
+            color: var(--light-text-color);
+            margin-bottom: 30px;
+            opacity: 0; /* Hidden initially */
+            animation: fadeInText 1s forwards 1.8s; /* Delayed fade in */
+        }
+
+        .splash-screen button {
+            background-color: var(--light-text-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            opacity: 0; /* Hidden initially */
+            animation: fadeInButton 1s forwards 2.5s; /* Delayed fade in */
+        }
+
+        .splash-screen button:hover {
+            transform: translateY(-5px) scale(1.05);
+            background-color: #fff;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .main-content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .love-letter-card {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 600px;
             position: relative;
             z-index: 1;
-            max-width: 680px;
-            width: 100%;
-            background: rgba(20, 10, 30, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 48px;
-            padding: 44px 32px 32px;
-            text-align: center;
-            border: 1px solid rgba(255, 120, 200, 0.2);
-            box-shadow: 0 30px 80px rgba(255, 0, 100, 0.2), 0 0 0 1px rgba(255, 120, 200, 0.1) inset;
-            animation: fadeUp 1s ease-out;
-        }
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(30px) scale(0.96); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+            animation: popIn 0.8s ease-out;
         }
 
-        /* ---------- JUDUL ---------- */
-        .avatar {
-            font-size: 4rem;
-            margin-bottom: 4px;
-        }
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
-            color: #ffd6e8;
-            text-shadow: 0 0 30px rgba(255, 80, 180, 0.4);
-            margin-bottom: 2px;
-        }
-        .subtitle {
-            font-size: 0.9rem;
-            font-weight: 300;
-            color: rgba(255, 200, 230, 0.6);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-        .divider {
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ff66aa, transparent);
-            margin: 0 auto 22px;
-            border-radius: 4px;
+        .love-letter-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8em;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            position: relative;
         }
 
-        /* ---------- QUOTE ---------- */
-        .quote {
-            font-weight: 300;
-            font-size: 1rem;
-            color: rgba(255, 220, 240, 0.8);
-            margin-bottom: 24px;
-            min-height: 3.6rem;
-            transition: opacity 0.5s;
-        }
-
-        /* ---------- SLIDER CINTA ---------- */
-        .meter-section {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 60px;
-            padding: 14px 20px 20px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(255, 120, 200, 0.08);
-        }
-        .meter-section label {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: rgba(255, 200, 230, 0.7);
+        .love-letter-card h2::after {
+            content: '';
             display: block;
-            margin-bottom: 6px;
-            letter-spacing: 2px;
-        }
-        .meter-section input[type="range"] {
-            width: 100%;
-            accent-color: #ff3388;
-            background: transparent;
-            height: 6px;
-            border-radius: 10px;
-            outline: none;
-        }
-        #meterValue {
-            display: inline-block;
-            margin-top: 6px;
-            font-weight: 600;
-            color: #ff99cc;
-            font-size: 1.2rem;
-            transition: transform 0.2s;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
         }
 
-        /* ---------- TOMBOL ---------- */
-        .btn-group {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-            justify-content: center;
+        .love-letter-card p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--text-color);
         }
-        .btn {
-            padding: 12px 28px;
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5em;
+            margin-top: 30px;
+            color: var(--primary-color);
+        }
+
+        .signature-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-top: -10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        #show-more-button {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
             border: none;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 0.95rem;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: 500;
+            border-radius: 30px;
             cursor: pointer;
-            transition: 0.25s ease;
-            letter-spacing: 0.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            flex: 1 0 auto;
-            justify-content: center;
-            min-width: 130px;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #ff3388, #cc2266);
-            color: #fff;
-            box-shadow: 0 6px 24px rgba(255, 30, 120, 0.3);
-        }
-        .btn-primary:hover {
-            transform: scale(1.04);
-            box-shadow: 0 10px 32px rgba(255, 30, 120, 0.5);
-        }
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.08);
-            color: #ffd6e8;
-            border: 1px solid rgba(255, 120, 200, 0.2);
-            backdrop-filter: blur(4px);
-        }
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: scale(1.04);
+            margin-top: 25px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        /* ---------- MODAL SURAT ---------- */
-        .modal-overlay {
-            position: fixed;
+        #show-more-button:hover {
+            background-color: #e04a9a;
+            transform: translateY(-3px);
+        }
+
+        #secret-message {
+            margin-top: 20px;
+            font-size: 1.05em;
+            color: #666;
+            font-style: italic;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+        }
+
+        #secret-message.visible {
+            max-height: 100px; /* Sesuaikan berdasarkan konten */
+            opacity: 1;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Floating Hearts Animation */
+        .heart-container {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            z-index: 999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
+            pointer-events: none; /* Agar tidak mengganggu interaksi */
+            overflow: hidden;
+            z-index: 0;
         }
-        .modal-overlay.active {
-            display: flex;
+
+        .heart {
+            position: absolute;
+            background-color: var(--primary-color);
+            transform: rotate(-45deg);
+            animation: floatHeart 10s infinite ease-in;
+            opacity: 0;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .modal-box {
-            max-width: 420px;
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
             width: 100%;
-            background: rgba(20, 10, 30, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 32px;
-            padding: 32px 28px;
-            border: 1px solid rgba(255, 120, 200, 0.15);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-        .modal-box h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.4rem;
-            color: #ffd6e8;
-            margin-bottom: 12px;
-        }
-        .modal-box p {
-            font-weight: 300;
-            font-size: 1rem;
-            line-height: 1.8;
-            color: rgba(255, 220, 240, 0.8);
-        }
-        .btn-close-modal {
-            margin-top: 20px;
-            padding: 10px 30px;
-            border: none;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-            cursor: pointer;
-            transition: 0.2s;
-            font-weight: 400;
-            border: 1px solid rgba(255, 120, 200, 0.15);
-        }
-        .btn-close-modal:hover {
-            background: rgba(255, 255, 255, 0.15);
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 50%;
         }
 
-        /* ---------- FOOTER ---------- */
-        .footer {
-            margin-top: 28px;
-            font-size: 0.7rem;
-            opacity: 0.25;
-            letter-spacing: 2px;
-            font-weight: 300;
-            color: #fff;
-        }
-        .footer strong {
-            color: #ff6699;
-            opacity: 0.8;
+        .heart::before {
+            top: -50%;
+            left: 0;
         }
 
-        /* ---------- RESPONSIVE ---------- */
-        @media (max-width: 500px) {
-            .card { padding: 30px 18px; }
-            h1 { font-size: 2.4rem; }
-            .btn { min-width: 100px; padding: 10px 16px; font-size: 0.85rem; }
-            .quote { font-size: 0.9rem; }
+        .heart::after {
+            top: 0;
+            left: 50%;
         }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(-45deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+                transform: translateY(90vh) rotate(-45deg) scale(1);
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(-45deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInButton {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .splash-screen h1 {
+                font-size: 3em;
+            }
+            .splash-screen p {
+                font-size: 1em;
+            }
+            .splash-screen button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            .love-letter-card {
+                padding: 30px;
+                margin: 15px;
+            }
+            .love-letter-card h2 {
+                font-size: 2em;
+            }
+            .love-letter-card p {
+                font-size: 0.95em;
+            }
+            .signature {
+                font-size: 1.3em;
+            }
+            .signature-name {
+                font-size: 1.6em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .splash-screen h1 {
+                font-size: 2.5em;
+            }
+            .splash-screen p {
+                font-size: 0.9em;
+            }
+            .love-letter-card {
+                padding: 20px;
+            }
+            .love-letter-card h2 {
+                font-size: 1.8em;
+            }
+            .love-letter-card p {
+                font-size: 0.9em;
+            }
+        }
+        /* --- Bagian CSS Berakhir Di Sini --- */
     </style>
 </head>
 <body>
-
-    <!-- Bintang latar -->
-    <div class="stars" id="starsContainer"></div>
-
-    <!-- Kartu utama -->
-    <div class="card">
-        <div class="avatar">💖</div>
-        <h1>Halo, Sayang!</h1>
-        <p class="subtitle">🌙 • UNTUK KAMU YANG TERINDAH • 🌙</p>
-        <div class="divider"></div>
-
-        <p class="quote" id="quoteText">
-            "Di antara ribuan bintang, aku paling suka yang ada di matamu."
-        </p>
-
-        <div class="meter-section">
-            <label>💕 SEBERAPA CINTA KAMU HARI INI?</label>
-            <input type="range" min="0" max="100" value="85" id="loveSlider" />
-            <span id="meterValue">85%</span>
-        </div>
-
-        <div class="btn-group">
-            <button class="btn btn-primary" id="openLetterBtn">💌 Baca Surat</button>
-            <button class="btn btn-secondary" id="surpriseBtn">🎁 Kejutan</button>
-        </div>
-
-        <div class="footer">
-            ✦ dibuat dengan <strong>❤️</strong> oleh <strong>DAFFAHACK</strong> ✦
+    <!-- Tampilan Awal yang Memikat (Splash Screen) -->
+    <div id="splash-screen" class="splash-screen active">
+        <div class="splash-content">
+            <h1>Sentuh Hatiku ❤️</h1>
+            <p id="hint-text">Aku punya sesuatu yang spesial untukmu...</p>
+            <button id="enter-button">Buka Sekarang!</button>
         </div>
     </div>
 
-    <!-- Modal Surat -->
-    <div class="modal-overlay" id="letterModal">
-        <div class="modal-box">
-            <h2>💌 Untuk Kamu</h2>
-            <p>
-                Aku hanya ingin bilang, terima kasih sudah menjadi bagian dari hariku.<br>
-                Senyummu adalah alasan aku selalu tersenyum. <br><br>
-                Jaga dirimu baik-baik, ya. Aku selalu di sini untukmu. 🌹
-            </p>
-            <button class="btn-close-modal" id="closeModalBtn">Tutup</button>
+    <!-- Tampilan Utama yang Penuh Cinta -->
+    <div id="main-content" class="main-content">
+        <div class="heart-container"></div> <!-- Kontainer untuk animasi hati -->
+        <div class="love-letter-card">
+            <h2>Untukmu, Bintang Hatiku ✨</h2>
+            <p>Setiap detik bersamamu adalah melodi terindah dalam hidupku. Kau adalah cahaya yang menerangi jalanku, senyum yang menghangatkan duniaku. Aku tak pernah tahu cinta bisa seindah ini, sampai kau hadir.</p>
+            <p>Terima kasih sudah menjadi bagian terpenting dalam setiap napas dan impianku. Semoga kisah kita abadi, seperti bintang-bintang di langit.</p>
+            <p class="signature">Dengan seluruh cintaku,</p>
+            <p class="signature-name">Dev-Ai (untukmu, user)</p>
+            <button id="show-more-button">Sebuah Janji...</button>
+            <p id="secret-message" class="hidden">Aku berjanji akan selalu ada untukmu, melewati setiap badai dan merayakan setiap kebahagiaan. Selamanya bersamamu adalah impian terbesarku.</p>
         </div>
     </div>
 
     <script>
-        // ======= 1. BINTANG =======
-        (function createStars() {
-            const container = document.getElementById('starsContainer');
-            for (let i = 0; i < 80; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                const size = Math.random() * 3 + 1;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
-                star.style.animationDelay = (Math.random() * 5) + 's';
-                container.appendChild(star);
-            }
-        })();
+        /* --- Bagian JavaScript Dimulai Di Sini --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const splashScreen = document.getElementById('splash-screen');
+            const enterButton = document.getElementById('enter-button');
+            const mainContent = document.getElementById('main-content');
+            const showMoreButton = document.getElementById('show-more-button');
+            const secretMessage = document.getElementById('secret-message');
+            const heartContainer = document.querySelector('.heart-container');
 
-        // ======= 2. SLIDER CINTA =======
-        const slider = document.getElementById('loveSlider');
-        const meterDisplay = document.getElementById('meterValue');
-        slider.addEventListener('input', function() {
-            const val = this.value;
-            meterDisplay.textContent = val + '%';
-            if (val >= 90) {
-                meterDisplay.style.transform = 'scale(1.2)';
-                setTimeout(() => meterDisplay.style.transform = 'scale(1)', 200);
-            }
-        });
-
-        // ======= 3. MODAL SURAT =======
-        const modal = document.getElementById('letterModal');
-        const openBtn = document.getElementById('openLetterBtn');
-        const closeBtn = document.getElementById('closeModalBtn');
-        openBtn.addEventListener('click', () => modal.classList.add('active'));
-        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
-        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
-
-        // ======= 4. KEJUTAN (love explosion) =======
-        document.getElementById('surpriseBtn').addEventListener('click', function() {
-            const emojis = ['❤️', '✨', '🌟', '💖', '🥰', '🌹', '💫', '💕', '🌸', '🌺'];
-            for (let i = 0; i < 30; i++) {
-                const el = document.createElement('div');
-                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                el.style.position = 'fixed';
-                el.style.left = Math.random() * 100 + 'vw';
-                el.style.top = '-20px';
-                el.style.fontSize = (Math.random() * 22 + 14) + 'px';
-                el.style.pointerEvents = 'none';
-                el.style.zIndex = '9999';
-                el.style.transition = 'all 1.6s cubic-bezier(0.22, 0.68, 0.35, 1)';
-                document.body.appendChild(el);
-                const destX = (Math.random() - 0.5) * 300;
-                const destY = window.innerHeight + 100 + Math.random() * 100;
-                setTimeout(() => {
-                    el.style.transform = `translate(${destX}px, ${destY}px) rotate(${Math.random() * 360}deg)`;
-                    el.style.opacity = '0';
-                }, 20);
-                setTimeout(() => el.remove(), 2000);
-            }
-            this.textContent = '🥳 Berhasil!';
-            this.style.opacity = '0.7';
-            setTimeout(() => { this.textContent = '🎁 Kejutan'; this.style.opacity = '1'; }, 1500);
-        });
-
-        // ======= 5. QUOTE BERGANDA (auto rotate) =======
-        const quotes = [
-            '"Di antara ribuan bintang, aku paling suka yang ada di matamu."',
-            '"Jika cinta adalah puisi, maka kamu adalah sajak terindahku."',
-            '"Aku tidak butuh sempurna, aku butuh kamu."',
-            '"Setiap detik bersamamu adalah hadiah terbaik."',
-            '"Cintaku padamu lebih besar dari galaksi."'
-        ];
-        let quoteIndex = 0;
-        const quoteEl = document.getElementById('quoteText');
-        setInterval(() => {
-            quoteIndex = (quoteIndex + 1) % quotes.length;
-            quoteEl.style.opacity = '0';
+            // Tampilkan splash screen setelah sedikit delay untuk efek loading
             setTimeout(() => {
-                quoteEl.textContent = quotes[quoteIndex];
-                quoteEl.style.opacity = '1';
-            }, 300);
-        }, 6000);
+                splashScreen.classList.add('active');
+            }, 100); // Sedikit delay agar transisi terlihat
+
+            // Fungsi untuk membuat dan menggerakkan hati
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.width = `${Math.random() * 20 + 10}px`; // Ukuran hati acak
+                heart.style.height = heart.style.width;
+                heart.style.left = `${Math.random() * 100}vw`; // Posisi horizontal acak
+                heart.style.animationDuration = `${Math.random() * 5 + 5}s`; // Durasi animasi acak
+                heart.style.animationDelay = `${Math.random() * 3}s`; // Delay animasi acak
+                heartContainer.appendChild(heart);
+
+                // Hapus hati setelah animasi selesai untuk efisiensi
+                heart.addEventListener('animationend', () => {
+                    heart.remove();
+                });
+            }
+
+            // Buat hati secara berkala
+            setInterval(createHeart, 300); // Setiap 300ms, hati baru muncul
+
+            // Event listener untuk tombol "Buka Sekarang!"
+            enterButton.addEventListener('click', () => {
+                splashScreen.classList.remove('active');
+                // Setelah splash screen hilang, tampilkan main content
+                setTimeout(() => {
+                    splashScreen.classList.add('hidden'); // Sembunyikan sepenuhnya setelah transisi
+                    mainContent.classList.add('active');
+                }, 800); // Sesuaikan dengan durasi transisi CSS splash-screen
+            });
+
+            // Event listener untuk tombol "Sebuah Janji..."
+            showMoreButton.addEventListener('click', () => {
+                secretMessage.classList.toggle('visible');
+                if (secretMessage.classList.contains('visible')) {
+                    showMoreButton.textContent = 'Sembunyikan Janji';
+                    secretMessage.classList.remove('hidden'); // Pastikan tidak ada display: none
+                } else {
+                    showMoreButton.textContent = 'Sebuah Janji...';
+                    // secretMessage.classList.add('hidden'); // Bisa ditambahkan jika ingin benar-benar hilang
+                }
+            });
+        });
+        /* --- Bagian JavaScript Berakhir Di Sini --- */
     </script>
 </body>
 </html>
