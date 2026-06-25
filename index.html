@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>For You 🌙</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Web Bucin - DAFFAHACK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ---------- RESET ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: #0f0c29;
-            background: radial-gradient(circle at 30% 10%, #302b63, #0f0c29);
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(ellipse at 30% 10%, #1a0b1f, #0d0a1a);
             padding: 20px;
-            overflow: hidden;
             position: relative;
+            overflow-x: hidden;
         }
+
+        /* ---------- BINTANG (background) ---------- */
         .stars {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -34,228 +37,275 @@
         }
         .star {
             position: absolute;
-            width: 3px;
-            height: 3px;
             background: white;
             border-radius: 50%;
-            animation: twinkle 3s infinite alternate;
-            opacity: 0.3;
+            opacity: 0.6;
+            animation: twinkle var(--duration) infinite alternate;
         }
         @keyframes twinkle {
             0% { opacity: 0.2; transform: scale(0.8); }
             100% { opacity: 1; transform: scale(1.2); }
         }
+
+        /* ---------- KARTU ---------- */
         .card {
             position: relative;
-            z-index: 10;
-            max-width: 480px;
+            z-index: 1;
+            max-width: 680px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.07);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 40px;
-            padding: 40px 30px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            background: rgba(20, 10, 30, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 48px;
+            padding: 44px 32px 32px;
             text-align: center;
-            color: #fff;
-            transition: 0.4s ease;
+            border: 1px solid rgba(255, 120, 200, 0.2);
+            box-shadow: 0 30px 80px rgba(255, 0, 100, 0.2), 0 0 0 1px rgba(255, 120, 200, 0.1) inset;
+            animation: fadeUp 1s ease-out;
         }
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* ---------- JUDUL ---------- */
         .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            font-weight: 300;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            user-select: none;
+            font-size: 4rem;
+            margin-bottom: 4px;
         }
         h1 {
-            font-weight: 700;
-            font-size: 28px;
-            margin-bottom: 6px;
-            background: linear-gradient(to right, #fbc2eb, #a18cd1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            color: #ffd6e8;
+            text-shadow: 0 0 30px rgba(255, 80, 180, 0.4);
+            margin-bottom: 2px;
         }
         .subtitle {
+            font-size: 0.9rem;
             font-weight: 300;
-            font-size: 14px;
-            opacity: 0.7;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
+            color: rgba(255, 200, 230, 0.6);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
         .divider {
-            width: 60px;
+            width: 80px;
             height: 2px;
-            background: rgba(255, 255, 255, 0.2);
-            margin: 0 auto 25px;
-            border-radius: 10px;
+            background: linear-gradient(90deg, transparent, #ff66aa, transparent);
+            margin: 0 auto 22px;
+            border-radius: 4px;
         }
+
+        /* ---------- QUOTE ---------- */
+        .quote {
+            font-weight: 300;
+            font-size: 1rem;
+            color: rgba(255, 220, 240, 0.8);
+            margin-bottom: 24px;
+            min-height: 3.6rem;
+            transition: opacity 0.5s;
+        }
+
+        /* ---------- SLIDER CINTA ---------- */
+        .meter-section {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 60px;
+            padding: 14px 20px 20px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 120, 200, 0.08);
+        }
+        .meter-section label {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(255, 200, 230, 0.7);
+            display: block;
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+        }
+        .meter-section input[type="range"] {
+            width: 100%;
+            accent-color: #ff3388;
+            background: transparent;
+            height: 6px;
+            border-radius: 10px;
+            outline: none;
+        }
+        #meterValue {
+            display: inline-block;
+            margin-top: 6px;
+            font-weight: 600;
+            color: #ff99cc;
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        /* ---------- TOMBOL ---------- */
         .btn-group {
             display: flex;
-            gap: 12px;
-            justify-content: center;
+            gap: 14px;
             flex-wrap: wrap;
-            margin-top: 10px;
+            justify-content: center;
         }
         .btn {
             padding: 12px 28px;
             border: none;
-            border-radius: 50px;
+            border-radius: 60px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            flex: 1;
-            min-width: 120px;
+            transition: 0.25s ease;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1 0 auto;
+            justify-content: center;
+            min-width: 130px;
         }
         .btn-primary {
-            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
-            color: #0f0c29;
-            border: none;
-            font-weight: 700;
-            box-shadow: 0 8px 20px rgba(161, 140, 209, 0.3);
+            background: linear-gradient(135deg, #ff3388, #cc2266);
+            color: #fff;
+            box-shadow: 0 6px 24px rgba(255, 30, 120, 0.3);
         }
         .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 28px rgba(161, 140, 209, 0.5);
+            transform: scale(1.04);
+            box-shadow: 0 10px 32px rgba(255, 30, 120, 0.5);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffd6e8;
+            border: 1px solid rgba(255, 120, 200, 0.2);
+            backdrop-filter: blur(4px);
         }
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
+            transform: scale(1.04);
         }
-        .meter-section {
-            margin: 30px 0 15px;
-        }
-        .meter-section label {
-            font-size: 13px;
-            opacity: 0.6;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-        input[type="range"] {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 4px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.15);
-            outline: none;
-            margin-top: 12px;
-        }
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #fbc2eb, #a18cd1);
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(161, 140, 209, 0.6);
-            border: 2px solid #fff;
-        }
-        #meterValue {
-            display: block;
-            margin-top: 10px;
-            font-weight: 700;
-            font-size: 22px;
-            background: linear-gradient(to right, #fbc2eb, #a18cd1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+
+        /* ---------- MODAL SURAT ---------- */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
             z-index: 999;
             display: none;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
+            animation: fadeIn 0.3s ease;
         }
         .modal-overlay.active {
             display: flex;
         }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
         .modal-box {
-            background: #1a1730;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
             max-width: 420px;
-            padding: 40px 30px;
+            width: 100%;
+            background: rgba(20, 10, 30, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 32px 28px;
+            border: 1px solid rgba(255, 120, 200, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             text-align: center;
-            color: #fff;
-            animation: fadeUp 0.4s ease;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
         }
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
+        .modal-box h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.4rem;
+            color: #ffd6e8;
+            margin-bottom: 12px;
         }
-        .modal-box h2 { font-size: 24px; margin-bottom: 15px; }
-        .modal-box p { font-size: 15px; line-height: 1.7; opacity: 0.8; margin-bottom: 25px; font-weight: 300; }
-        .modal-box .btn-close-modal {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        .modal-box p {
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255, 220, 240, 0.8);
+        }
+        .btn-close-modal {
+            margin-top: 20px;
             padding: 10px 30px;
+            border: none;
             border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
             color: #fff;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s;
+            font-weight: 400;
+            border: 1px solid rgba(255, 120, 200, 0.15);
         }
-        .modal-box .btn-close-modal:hover { background: rgba(255, 255, 255, 0.15); }
-        .footer { margin-top: 25px; font-size: 11px; opacity: 0.25; letter-spacing: 1px; font-weight: 300; }
-        @media (max-width: 480px) {
-            .card { padding: 30px 20px; }
-            .btn { min-width: 100px; padding: 10px 18px; font-size: 12px; }
-            h1 { font-size: 24px; }
+        .btn-close-modal:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            margin-top: 28px;
+            font-size: 0.7rem;
+            opacity: 0.25;
+            letter-spacing: 2px;
+            font-weight: 300;
+            color: #fff;
+        }
+        .footer strong {
+            color: #ff6699;
+            opacity: 0.8;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 500px) {
+            .card { padding: 30px 18px; }
+            h1 { font-size: 2.4rem; }
+            .btn { min-width: 100px; padding: 10px 16px; font-size: 0.85rem; }
+            .quote { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Bintang latar -->
     <div class="stars" id="starsContainer"></div>
+
+    <!-- Kartu utama -->
     <div class="card">
-        <div class="avatar">✨</div>
+        <div class="avatar">💖</div>
         <h1>Halo, Sayang!</h1>
         <p class="subtitle">🌙 • UNTUK KAMU YANG TERINDAH • 🌙</p>
         <div class="divider"></div>
-        <p style="font-weight:300; opacity:0.7; font-size:15px; margin-bottom:5px;">
+
+        <p class="quote" id="quoteText">
             "Di antara ribuan bintang, aku paling suka yang ada di matamu."
         </p>
+
         <div class="meter-section">
-            <label>💖 SEBERAPA CINTA KAMU HARI INI?</label>
+            <label>💕 SEBERAPA CINTA KAMU HARI INI?</label>
             <input type="range" min="0" max="100" value="85" id="loveSlider" />
             <span id="meterValue">85%</span>
         </div>
+
         <div class="btn-group">
             <button class="btn btn-primary" id="openLetterBtn">💌 Baca Surat</button>
             <button class="btn btn-secondary" id="surpriseBtn">🎁 Kejutan</button>
         </div>
-        <div class="footer">✦ dibuat khusus untukmu ✦</div>
+
+        <div class="footer">
+            ✦ dibuat dengan <strong>❤️</strong> oleh <strong>DAFFAHACK</strong> ✦
+        </div>
     </div>
 
+    <!-- Modal Surat -->
     <div class="modal-overlay" id="letterModal">
         <div class="modal-box">
             <h2>💌 Untuk Kamu</h2>
             <p>
-                Aku hanya ingin bilang, terima kasih sudah menjadi bagian dari hariku.
-                Senyummu adalah alasan aku selalu tersenyum. <br /><br />
+                Aku hanya ingin bilang, terima kasih sudah menjadi bagian dari hariku.<br>
+                Senyummu adalah alasan aku selalu tersenyum. <br><br>
                 Jaga dirimu baik-baik, ya. Aku selalu di sini untukmu. 🌹
             </p>
             <button class="btn-close-modal" id="closeModalBtn">Tutup</button>
@@ -263,6 +313,7 @@
     </div>
 
     <script>
+        // ======= 1. BINTANG =======
         (function createStars() {
             const container = document.getElementById('starsContainer');
             for (let i = 0; i < 80; i++) {
@@ -270,14 +321,16 @@
                 star.classList.add('star');
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
-                star.style.width = Math.random() * 3 + 1 + 'px';
-                star.style.height = star.style.width;
-                star.style.animationDelay = Math.random() * 5 + 's';
-                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                star.style.animationDelay = (Math.random() * 5) + 's';
                 container.appendChild(star);
             }
         })();
 
+        // ======= 2. SLIDER CINTA =======
         const slider = document.getElementById('loveSlider');
         const meterDisplay = document.getElementById('meterValue');
         slider.addEventListener('input', function() {
@@ -289,6 +342,7 @@
             }
         });
 
+        // ======= 3. MODAL SURAT =======
         const modal = document.getElementById('letterModal');
         const openBtn = document.getElementById('openLetterBtn');
         const closeBtn = document.getElementById('closeModalBtn');
@@ -296,25 +350,26 @@
         closeBtn.addEventListener('click', () => modal.classList.remove('active'));
         modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
 
+        // ======= 4. KEJUTAN (love explosion) =======
         document.getElementById('surpriseBtn').addEventListener('click', function() {
-            const emojis = ['❤️', '✨', '🌟', '💖', '🥰', '🌹', '💫'];
+            const emojis = ['❤️', '✨', '🌟', '💖', '🥰', '🌹', '💫', '💕', '🌸', '🌺'];
             for (let i = 0; i < 30; i++) {
                 const el = document.createElement('div');
                 el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
                 el.style.position = 'fixed';
                 el.style.left = Math.random() * 100 + 'vw';
                 el.style.top = '-20px';
-                el.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                el.style.fontSize = (Math.random() * 22 + 14) + 'px';
                 el.style.pointerEvents = 'none';
                 el.style.zIndex = '9999';
-                el.style.transition = 'all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                el.style.transition = 'all 1.6s cubic-bezier(0.22, 0.68, 0.35, 1)';
                 document.body.appendChild(el);
-                const destX = (Math.random() - 0.5) * 200;
-                const destY = window.innerHeight + 100;
+                const destX = (Math.random() - 0.5) * 300;
+                const destY = window.innerHeight + 100 + Math.random() * 100;
                 setTimeout(() => {
                     el.style.transform = `translate(${destX}px, ${destY}px) rotate(${Math.random() * 360}deg)`;
                     el.style.opacity = '0';
-                }, 10);
+                }, 20);
                 setTimeout(() => el.remove(), 2000);
             }
             this.textContent = '🥳 Berhasil!';
@@ -322,18 +377,24 @@
             setTimeout(() => { this.textContent = '🎁 Kejutan'; this.style.opacity = '1'; }, 1500);
         });
 
+        // ======= 5. QUOTE BERGANDA (auto rotate) =======
         const quotes = [
             '"Di antara ribuan bintang, aku paling suka yang ada di matamu."',
             '"Jika cinta adalah puisi, maka kamu adalah sajak terindahku."',
             '"Aku tidak butuh sempurna, aku butuh kamu."',
-            '"Setiap detik bersamamu adalah hadiah terbaik."'
+            '"Setiap detik bersamamu adalah hadiah terbaik."',
+            '"Cintaku padamu lebih besar dari galaksi."'
         ];
         let quoteIndex = 0;
-        const quoteElement = document.querySelector('.card p');
+        const quoteEl = document.getElementById('quoteText');
         setInterval(() => {
             quoteIndex = (quoteIndex + 1) % quotes.length;
-            quoteElement.textContent = quotes[quoteIndex];
-        }, 8000);
+            quoteEl.style.opacity = '0';
+            setTimeout(() => {
+                quoteEl.textContent = quotes[quoteIndex];
+                quoteEl.style.opacity = '1';
+            }, 300);
+        }, 6000);
     </script>
 </body>
 </html>
